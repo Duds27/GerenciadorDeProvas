@@ -60,6 +60,12 @@
    <artifactId>jsf-impl</artifactId>
    <version>2.1.7</version>
 </dependency>
+	<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>blitzer</artifactId>
+			<version>1.0.10</version>
+		</dependency>
+	
 
 	</dependencies>
 	<repositories>
@@ -67,8 +73,7 @@
 		<repository>  
 	    <id>prime-repo</id>  
 	    <name>PrimeFaces Maven Repository</name>  
-	    <url>http://repository.primefaces.org</url>  
-	    <layout>default</layout>  
+	    <url>http://repository.primefaces.org</url> 
 		</repository>  
 	</repositories>
 
