@@ -11,12 +11,6 @@
 	<h:head>
 
 		<style> .ui-datagrid-no-border .ui-datagrid-content { border: none; } </style>
-
-		<title>
-		   <ui:insert name="title">
-				<h:outputLabel value="#{msg['pages.templateMenu.titleMainMenu']}" />
-			</ui:insert>
-	    </title>
 	</h:head>
 
 	<h:body>
@@ -27,12 +21,12 @@
 
 
 			<p:layoutUnit position="north" size="160" >
-				<ui:include src="comuns/cabecalho.xhtml" />
+				<ui:include src="base/cabecalho.xhtml" />
 			</p:layoutUnit>
 
 
 			<p:layoutUnit position="south">
-				<ui:include src="comuns/rodape.xhtml" />
+				<ui:include src="base/rodape.xhtml" />
 			</p:layoutUnit>
 
 
@@ -40,7 +34,7 @@
 			<p:layoutUnit position="west"
 				header="#{msg['pages.templateMenu.titleMainMenu']}"
 				collapsible="true" size="250">
-				<ui:include src="comuns/menu.xhtml" />
+				<ui:include src="base/menu.xhtml" />
 			</p:layoutUnit>
 
 
