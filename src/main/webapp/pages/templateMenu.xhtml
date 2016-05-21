@@ -20,7 +20,7 @@
 		<p:layout id="globalLayout" fullPage="true">
 
 
-			<p:layoutUnit position="north" size="160" >
+			<p:layoutUnit position="north" size="100" >
 				<ui:include src="base/cabecalho.xhtml" />
 			</p:layoutUnit>
 
@@ -33,7 +33,7 @@
 			<!-- Menu lateral -->
 			<p:layoutUnit position="west"
 				header="#{msg['pages.templateMenu.titleMainMenu']}"
-				collapsible="true" size="250">
+				collapsible="true" size="250" resizable="true" maxSize="300" minSize="250">
 				<ui:include src="base/menu.xhtml" />
 			</p:layoutUnit>
 
