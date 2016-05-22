@@ -28,7 +28,10 @@
 			<p:layoutUnit position="south">
 				<ui:include src="base/rodape.xhtml" />
 			</p:layoutUnit>
-
+			
+			<p:layoutUnit position="center">
+				<ui:insert name="principal" />
+			</p:layoutUnit>
 
 			<!-- Menu lateral -->
 			<p:layoutUnit position="west"
@@ -38,9 +41,6 @@
 			</p:layoutUnit>
 
 
-			<p:layoutUnit position="center">
-				<ui:insert name="principal" />
-			</p:layoutUnit>
 		</p:layout>
 
 	</h:body>
