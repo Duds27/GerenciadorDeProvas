@@ -4,12 +4,15 @@
 package br.facens.gerenciadordeprovas.bean;
 
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -18,8 +21,13 @@ import javax.persistence.OneToMany;
  *
  */
 @Entity
-public class Conteudo {
-
+public class Conteudo implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
@@ -30,6 +38,12 @@ public class Conteudo {
 
 	@ManyToOne
 	private Disciplina disciplina;
+	
+	@ManyToMany(
+		mappedBy = "conteudos",
+		cascade = CascadeType.ALL
+	)
+	private List<Prova> provas;
 	
 	
 	/**
@@ -88,23 +102,30 @@ public class Conteudo {
 		this.questao = questao;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
+	public List<Prova> getProvas() {
+		return provas;
+	}
+
+	public void setProvas(List<Prova> provas) {
+		this.provas = provas;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((disciplina == null) ? 0 : disciplina.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((provas == null) ? 0 : provas.hashCode());
 		result = prime * result + ((questao == null) ? 0 : questao.hashCode());
 		result = prime * result + ((topico == null) ? 0 : topico.hashCode());
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -127,6 +148,13 @@ public class Conteudo {
 		if (id != other.id) {
 			return false;
 		}
+		if (provas == null) {
+			if (other.provas != null) {
+				return false;
+			}
+		} else if (!provas.equals(other.provas)) {
+			return false;
+		}
 		if (questao == null) {
 			if (other.questao != null) {
 				return false;
@@ -144,13 +172,10 @@ public class Conteudo {
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		return "Conteudo [id=" + id + ", topico=" + topico + ", disciplina=" + disciplina + ", questao=" + questao
-				+ "]";
+		return "Conteudo [id=" + id + ", topico=" + topico + ", questao=" + questao + ", disciplina=" + disciplina
+				+ ", provas=" + provas + "]";
 	}
 	
 }

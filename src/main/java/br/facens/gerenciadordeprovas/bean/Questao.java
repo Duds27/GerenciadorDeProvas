@@ -3,23 +3,36 @@
  */
 package br.facens.gerenciadordeprovas.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
 
 /**
  * @author eencarnacao
  *
  */
-@MappedSuperclass
 @Entity
-public abstract class Questao {
+@Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorColumn(name="tipoQuestao", discriminatorType=DiscriminatorType.STRING,length=20)
+public abstract class Questao implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
@@ -29,10 +42,13 @@ public abstract class Questao {
 	private int tempo;
 	private int quantidadeUso;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Conteudo conteudo;
 	
-	
+	@ManyToMany(
+		mappedBy = "questoes",
+		cascade=CascadeType.ALL
+	)
 	private List<Prova> prova;
 
 	public abstract void gerarProva();

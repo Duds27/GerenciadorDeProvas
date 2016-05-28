@@ -3,6 +3,7 @@
  */
 package br.facens.gerenciadordeprovas.bean;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 /**
@@ -10,7 +11,13 @@ import javax.persistence.Entity;
  *
  */
 @Entity
+@DiscriminatorValue(value="Alternativa")
 public class QuestaoAlternativa extends Questao {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public void gerarProva() {

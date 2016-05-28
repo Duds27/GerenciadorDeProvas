@@ -5,5 +5,7 @@
 		<class>br.facens.gerenciadordeprovas.bean.Disciplina</class>
 		<class>br.facens.gerenciadordeprovas.bean.Questao</class>
 		<class>br.facens.gerenciadordeprovas.bean.QuestaoAlternativa</class>
+		<class>br.facens.gerenciadordeprovas.bean.Prova</class>
+		<class>br.facens.gerenciadordeprovas.bean.Professor</class>
 	</persistence-unit>
 </persistence>

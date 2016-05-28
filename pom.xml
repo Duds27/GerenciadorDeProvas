@@ -49,32 +49,38 @@
 			<version>5.3</version>
 			<scope>compile</scope>
 		</dependency>
-		
+
 		<dependency>
-   <groupId>com.sun.faces</groupId>
-   <artifactId>jsf-api</artifactId>
-   <version>2.1.7</version>
-</dependency>
-<dependency>
-   <groupId>com.sun.faces</groupId>
-   <artifactId>jsf-impl</artifactId>
-   <version>2.1.7</version>
-</dependency>
-	<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>2.1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<version>2.1.7</version>
+		</dependency>
+		<dependency>
 			<groupId>org.primefaces.themes</groupId>
 			<artifactId>blitzer</artifactId>
 			<version>1.0.10</version>
 		</dependency>
-	
+
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.faces</artifactId>
+			<version>2.1.21</version>
+		</dependency>
+
 
 	</dependencies>
 	<repositories>
-			<!-- For 3.5 and older -->  
-		<repository>  
-	    <id>prime-repo</id>  
-	    <name>PrimeFaces Maven Repository</name>  
-	    <url>http://repository.primefaces.org</url> 
-		</repository>  
+		<!-- For 3.5 and older -->
+		<repository>
+			<id>prime-repo</id>
+			<name>PrimeFaces Maven Repository</name>
+			<url>http://repository.primefaces.org</url>
+		</repository>
 	</repositories>
 
 </project>
