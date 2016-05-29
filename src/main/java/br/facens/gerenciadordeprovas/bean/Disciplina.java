@@ -3,12 +3,16 @@
  */
 package br.facens.gerenciadordeprovas.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -16,17 +20,30 @@ import javax.persistence.OneToMany;
  *
  */
 @Entity
-public class Disciplina {
+public class Disciplina implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	private String nome;
 	
-	@OneToMany(mappedBy="disciplina")
+	@OneToMany(mappedBy="disciplina", cascade = CascadeType.ALL)
 	private List<Conteudo> conteudo;
 	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "provaID")
+	private Prova prova;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "professorID")
+	private Professor professor;
 	
+
 	public long getId() {
 		return id;
 	}
@@ -55,9 +72,26 @@ public class Disciplina {
 		this.conteudo.add(conteudo);
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
+	public Prova getProva() {
+		return prova;
+	}
+
+	public void setProva(Prova prova) {
+		this.prova = prova;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -65,12 +99,11 @@ public class Disciplina {
 		result = prime * result + ((conteudo == null) ? 0 : conteudo.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((professor == null) ? 0 : professor.hashCode());
+		result = prime * result + ((prova == null) ? 0 : prova.hashCode());
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -100,15 +133,27 @@ public class Disciplina {
 		} else if (!nome.equals(other.nome)) {
 			return false;
 		}
+		if (professor == null) {
+			if (other.professor != null) {
+				return false;
+			}
+		} else if (!professor.equals(other.professor)) {
+			return false;
+		}
+		if (prova == null) {
+			if (other.prova != null) {
+				return false;
+			}
+		} else if (!prova.equals(other.prova)) {
+			return false;
+		}
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		return "Disciplna [id=" + id + ", nome=" + nome + ", conteudo=" + conteudo + "]";
+		return "Disciplina [id=" + id + ", nome=" + nome + ", conteudo=" + conteudo + ", prova=" + prova
+				+ ", professor=" + professor + "]";
 	}
-
+	
 }
