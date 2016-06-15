@@ -4,6 +4,7 @@
 package br.facens.gerenciadordeprovas.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -32,8 +33,8 @@ public class Disciplina implements Serializable {
 	private long id;
 	private String nome;
 	
-	//@OneToMany(mappedBy="disciplina", cascade = CascadeType.ALL)
-	//private List<Conteudo> conteudo;
+	@OneToMany(mappedBy="disciplina", cascade = CascadeType.ALL)
+	private List<Conteudo> conteudo = new ArrayList<Conteudo>();
 	
 	/*@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "provaID")
@@ -43,6 +44,15 @@ public class Disciplina implements Serializable {
 	@JoinColumn(name = "professorID")
 	private Professor professor;*/
 	
+	
+	public Disciplina(long id, String nome) {
+		super();
+		this.id = id;
+		this.nome = nome;
+	}
+	
+	public Disciplina() {
+	}
 
 	public long getId() {
 		return id;
@@ -60,7 +70,7 @@ public class Disciplina implements Serializable {
 		this.nome = nome;
 	}
 	
-	/*public List<Conteudo> getConteudo() {
+	public List<Conteudo> getConteudo() {
 		return conteudo;
 	}
 	
@@ -70,7 +80,7 @@ public class Disciplina implements Serializable {
 	
 	public void addConteudo(Conteudo conteudo) {
 		this.conteudo.add(conteudo);
-	}*/
+	}
 
 	/*public Prova getProva() {
 		return prova;

@@ -13,11 +13,9 @@
             <p:menuitem value="Apagar" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
             <p:menuitem value="Listar" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
         </p:submenu>
-        <p:submenu label="Disciplinas">
-            <p:menuitem value="Cadastrar" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" url="cadastroDisciplinas.xhtml" />
-            <p:menuitem value="Alterar" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
-            <p:menuitem value="Apagar" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
-            <p:menuitem value="Listar" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
+        <p:submenu label="#{msg['pages.base.menu.cadastros']}">
+            <p:menuitem value="#{msg['pages.base.menu.cadastroDisciplina']}" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" url="cadastroDisciplinas.xhtml" />
+            <p:menuitem value="#{msg['pages.base.menu.cadastroConteudo']}" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" url="cadastroConteudo.xhtml" />
         </p:submenu>
         <p:submenu label="Conteudo">
             <p:menuitem value="Cadastrar" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" />

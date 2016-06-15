@@ -36,14 +36,14 @@ public class Conteudo implements Serializable {
 	//@OneToMany(mappedBy="conteudo")
 	private List<Questao> questao;
 
-	//@ManyToOne
+	@ManyToOne
 	private Disciplina disciplina;
 	
 	/*@ManyToMany(
 		mappedBy = "conteudos",
 		cascade = CascadeType.ALL
 	)*/
-	private List<Prova> provas;
+	//private List<Prova> provas;
 	
 	
 	/**
@@ -102,13 +102,13 @@ public class Conteudo implements Serializable {
 		this.questao = questao;
 	}
 
-	public List<Prova> getProvas() {
+/*	public List<Prova> getProvas() {
 		return provas;
 	}
 
 	public void setProvas(List<Prova> provas) {
 		this.provas = provas;
-	}
+	}*/
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -120,7 +120,7 @@ public class Conteudo implements Serializable {
 		int result = 1;
 		result = prime * result + ((disciplina == null) ? 0 : disciplina.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((provas == null) ? 0 : provas.hashCode());
+		//result = prime * result + ((provas == null) ? 0 : provas.hashCode());
 		result = prime * result + ((questao == null) ? 0 : questao.hashCode());
 		result = prime * result + ((topico == null) ? 0 : topico.hashCode());
 		return result;
@@ -148,13 +148,13 @@ public class Conteudo implements Serializable {
 		if (id != other.id) {
 			return false;
 		}
-		if (provas == null) {
+		/*if (provas == null) {
 			if (other.provas != null) {
 				return false;
 			}
 		} else if (!provas.equals(other.provas)) {
 			return false;
-		}
+		}*/
 		if (questao == null) {
 			if (other.questao != null) {
 				return false;
@@ -174,8 +174,8 @@ public class Conteudo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Conteudo [id=" + id + ", topico=" + topico + ", questao=" + questao + ", disciplina=" + disciplina
-				+ ", provas=" + provas + "]";
+		return "Conteudo [id=" + id + ", topico=" + topico + ", questao=" + questao + ", disciplina=" + disciplina;
+				//+ ", provas=" + provas + "]";
 	}
 	
 }

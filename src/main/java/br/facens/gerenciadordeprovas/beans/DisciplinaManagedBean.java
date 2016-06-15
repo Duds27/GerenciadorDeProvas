@@ -5,14 +5,10 @@ package br.facens.gerenciadordeprovas.beans;
 
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
-import org.primefaces.event.SelectEvent;
-import org.primefaces.event.UnselectEvent;
 
 import br.facens.gerenciadordeprovas.bean.Disciplina;
 import br.facens.gerenciadordeprovas.service.DisciplinaService;
