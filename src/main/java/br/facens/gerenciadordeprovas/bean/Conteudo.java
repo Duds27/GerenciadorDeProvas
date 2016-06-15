@@ -33,16 +33,16 @@ public class Conteudo implements Serializable {
 	private long id;
 	private String topico;
 	
-	@OneToMany(mappedBy="conteudo")
+	//@OneToMany(mappedBy="conteudo")
 	private List<Questao> questao;
 
-	@ManyToOne
+	//@ManyToOne
 	private Disciplina disciplina;
 	
-	@ManyToMany(
+	/*@ManyToMany(
 		mappedBy = "conteudos",
 		cascade = CascadeType.ALL
-	)
+	)*/
 	private List<Prova> provas;
 	
 	

@@ -35,26 +35,26 @@ public class Prova {
 	
 	private int quantidadeQuestoes;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	/*@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(
 		name = "Prova_Questoes",
 		joinColumns = { @JoinColumn(name = "provaID") },
 		inverseJoinColumns = { @JoinColumn(name = "questaoID") }
-	)
+	)*/
 	private List<Questao> questoes;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	/*@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(
 		name = "Prova_Conteudos",
 		joinColumns = { @JoinColumn(name = "provaID") },
 		inverseJoinColumns = { @JoinColumn(name = "conteudoID") }
-	)
+	)*/
 	private List<Conteudo> conteudos;
 	
-	@OneToMany(
+	/*@OneToMany(
 		mappedBy = "prova",
 		cascade = CascadeType.ALL
-	)
+	)*/
 	private List<Disciplina> disciplinas;
 	
 	@ManyToOne(

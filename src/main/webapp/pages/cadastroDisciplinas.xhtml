@@ -1,0 +1,116 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
+
+
+	<ui:define name="title">
+		<h:outputText value="#{msg['pages.cadastroAluno.title']}" />
+	</ui:define>
+
+	<ui:define name="principal">
+		<p:panelGrid>
+			<f:facet name="header">
+				<p:row>
+					<p:column>
+						<p:graphicImage library="sistema"
+							name="images/icon_livro_100x100.png" />
+					</p:column>
+					<p:column>
+						<p:outputLabel value="#{msg['pages.cadastroDisciplina.titulo']}" />
+					</p:column>
+				</p:row>
+			</f:facet>
+
+			<!-- Form de cadastro de disciplina -->
+			<h:form id="formDisciplina">
+				<p:row>
+					<p:column>
+						<h:outputLabel
+							value="#{msg['pages.cadastroDisciplina.nomeDisciplina']}" />
+					</p:column>
+					<p:column>
+						<h:inputText value="#{disciplinaManagedBean.disciplina.nome}"></h:inputText>
+					</p:column>
+				</p:row>
+			</h:form>
+
+		</p:panelGrid>
+
+		<p:row>
+			<p:column>
+				<p:commandButton value="#{msg['pages.cadastroDisciplina.salvar']}"
+					action="#{disciplinaManagedBean.save}"
+					update=":formDiscCad:tabelaDisc"
+					icon="ui-icon-disk" />
+			</p:column>
+		</p:row>
+
+		<!-- Mensagem ajax de cadastro -->
+		<p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
+			<f:facet name="default">
+				<h:outputText value="#{msg['pages.cadastroDisciplina.ajaxDefault']}" />
+			</f:facet>
+
+			<f:facet name="progress">
+				<h:outputText
+					value="#{msg['pages.cadastroDisciplina.ajaxProgress']}" />
+			</f:facet>
+
+			<f:facet name="start">
+				<p:graphicImage library="sistema" name="images/facebook.gif" />
+			</f:facet>
+
+			<f:facet name="complete">
+				<h:outputText
+					value="#{msg['pages.cadastroDisciplina.ajaxComplete']}" />
+			</f:facet>
+		</p:ajaxStatus>
+
+		<br />
+
+
+		<!-- Form de exibição do cadastro de disciplina realizado -->
+		<h:form id="formDiscCad">
+			<p:dataTable 
+				value="#{disciplinaManagedBean.disciplinas}"
+				id="tabelaDisc"
+				var="disc" 
+				editable="true"
+				rowKey="#{disc.id}">
+				
+				<f:facet name="header">
+					<h:outputLabel value="#{msg['pages.cadastroDisciplina.colunaFacet']}" />
+				</f:facet>
+				 					
+				<p:ajax event="rowEdit" listener="#{disciplinaManagedBean.onRowEdit}" />
+
+				<p:column headerText="#{msg['pages.cadastroDisciplina.colID']}" style="width:10%">
+					<h:outputText value="#{disc.id}" />
+				</p:column>
+
+				<p:column headerText="#{msg['pages.cadastroDisciplina.colDisciplina']}" style="width:50%">
+					<p:cellEditor>
+						<f:facet name="output"><h:outputText value="#{disc.nome}" /></f:facet>
+						<f:facet name="input"><p:inputText value="#{disc.nome}" /> </f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="#{msg['pages.cadastroDisciplina.opcao']}" style="width:9%">
+					<p:commandButton value="#{msg['pages.cadastroDisciplina.remover']}"
+						actionListener="#{disciplinaManagedBean.remove(disc)}"
+						update="tabelaDisc" icon="ui-icon-trash" />						
+				</p:column>
+				
+				<p:column headerText="#{msg['pages.cadastroDisciplina.opcao']}" style="width:5%">
+           			<p:rowEditor />
+       			</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

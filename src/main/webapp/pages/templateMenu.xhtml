@@ -9,21 +9,19 @@
 
 <f:view locale="#{localeBean.locale}">
 	<h:head>
-
 		<style> .ui-datagrid-no-border .ui-datagrid-content { border: none; } </style>
+		<ui:insert name="title">
+			<h:outputLabel value="#{msg['pages.inicio.title']}"></h:outputLabel>
+		</ui:insert>
 	</h:head>
 
 	<h:body>
 
-
-
 		<p:layout id="globalLayout" fullPage="true">
-
 
 			<p:layoutUnit position="north" size="100" >
 				<ui:include src="base/cabecalho.xhtml" />
 			</p:layoutUnit>
-
 
 			<p:layoutUnit position="south">
 				<ui:include src="base/rodape.xhtml" />
@@ -39,7 +37,6 @@
 				collapsible="true" size="250" resizable="true" maxSize="300" minSize="250">
 				<ui:include src="base/menu.xhtml" />
 			</p:layoutUnit>
-
 
 		</p:layout>
 

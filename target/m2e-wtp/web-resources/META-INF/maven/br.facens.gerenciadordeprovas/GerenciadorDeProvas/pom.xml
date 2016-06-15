@@ -29,11 +29,12 @@
 		</dependency>
 
 		<!-- http://mvnrepository.com/artifact/org.apache.derby/derby -->
-		<dependency>
-			<groupId>org.apache.derby</groupId>
-			<artifactId>derby</artifactId>
-			<version>10.12.1.1</version>
-		</dependency>
+		<!--<dependency> <groupId>org.apache.derby</groupId> <artifactId>derby</artifactId> 
+			<version>10.12.1.1</version> </dependency> -->
+
+		<!-- http://mvnrepository.com/artifact/org.apache.derby/derbyclient -->
+		<!--<dependency> <groupId>org.apache.derby</groupId> <artifactId>derbyclient</artifactId> 
+			<version>10.12.1.1</version> </dependency> -->
 
 
 		<!-- http://mvnrepository.com/artifact/org.eclipse.persistence/org.eclipse.persistence.jpa -->
@@ -71,6 +72,14 @@
 			<artifactId>javax.faces</artifactId>
 			<version>2.1.21</version>
 		</dependency>
+
+		<!-- http://mvnrepository.com/artifact/org.glassfish.web/el-impl -->
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>el-impl</artifactId>
+			<version>2.2.1-b05</version>
+		</dependency>
+
 
 	</dependencies>
 	<repositories>

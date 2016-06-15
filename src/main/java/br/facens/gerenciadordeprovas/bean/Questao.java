@@ -42,13 +42,13 @@ public abstract class Questao implements Serializable {
 	private int tempo;
 	private int quantidadeUso;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	//@ManyToOne(cascade = CascadeType.ALL)
 	private Conteudo conteudo;
 	
-	@ManyToMany(
+	/*@ManyToMany(
 		mappedBy = "questoes",
 		cascade=CascadeType.ALL
-	)
+	)*/
 	private List<Prova> prova;
 
 	public abstract void gerarProva();

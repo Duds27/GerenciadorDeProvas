@@ -27,16 +27,16 @@ public class Professor implements Serializable {
 	private long id;
 	private String nome;
 	
-	@OneToMany(
+	/*@OneToMany(
 		mappedBy = "prova",
 		cascade = CascadeType.ALL
-	)
+	)*/
 	private List<Prova> provas;
 	
-	@OneToMany(
+	/*@OneToMany(
 		mappedBy = "professor",
 		cascade = CascadeType.ALL
-	)
+	)*/
 	private List<Disciplina> disciplinas;
 	
 	
