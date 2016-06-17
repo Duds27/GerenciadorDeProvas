@@ -33,10 +33,10 @@ public class Conteudo implements Serializable {
 	private long id;
 	private String topico;
 	
-	//@OneToMany(mappedBy="conteudo")
-	private List<Questao> questao;
+	@OneToMany(mappedBy="conteudo")
+	private List<Questao> questoes;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Disciplina disciplina;
 	
 	/*@ManyToMany(
@@ -46,60 +46,36 @@ public class Conteudo implements Serializable {
 	//private List<Prova> provas;
 	
 	
-	/**
-	 * @return the id
-	 */
 	public long getId() {
 		return id;
 	}
 	
-	/**
-	 * @param id the id to set
-	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 	
-	/**
-	 * @return the topico
-	 */
 	public String getTopico() {
 		return topico;
 	}
 	
-	/**
-	 * @param topico the topico to set
-	 */
 	public void setTopico(String topico) {
 		this.topico = topico;
 	}
 	
-	/**
-	 * @return the disciplina
-	 */
 	public Disciplina getDisciplina() {
 		return disciplina;
 	}
 	
-	/**
-	 * @param disciplina the disciplina to set
-	 */
 	public void setDisciplina(Disciplina disciplina) {
 		this.disciplina = disciplina;
 	}
 	
-	/**
-	 * @return the questao
-	 */
-	public List<Questao> getQuestao() {
-		return questao;
+	public List<Questao> getQuestoes() {
+		return questoes;
 	}
 	
-	/**
-	 * @param questao the questao to set
-	 */
-	public void setQuestao(List<Questao> questao) {
-		this.questao = questao;
+	public void setQuestoes(List<Questao> questoes) {
+		this.questoes = questoes;
 	}
 
 /*	public List<Prova> getProvas() {
@@ -121,7 +97,7 @@ public class Conteudo implements Serializable {
 		result = prime * result + ((disciplina == null) ? 0 : disciplina.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		//result = prime * result + ((provas == null) ? 0 : provas.hashCode());
-		result = prime * result + ((questao == null) ? 0 : questao.hashCode());
+		result = prime * result + ((questoes == null) ? 0 : questoes.hashCode());
 		result = prime * result + ((topico == null) ? 0 : topico.hashCode());
 		return result;
 	}
@@ -155,11 +131,11 @@ public class Conteudo implements Serializable {
 		} else if (!provas.equals(other.provas)) {
 			return false;
 		}*/
-		if (questao == null) {
-			if (other.questao != null) {
+		if (questoes == null) {
+			if (other.questoes != null) {
 				return false;
 			}
-		} else if (!questao.equals(other.questao)) {
+		} else if (!questoes.equals(other.questoes)) {
 			return false;
 		}
 		if (topico == null) {
@@ -174,7 +150,7 @@ public class Conteudo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Conteudo [id=" + id + ", topico=" + topico + ", questao=" + questao + ", disciplina=" + disciplina;
+		return "Conteudo [id=" + id + ", topico=" + topico + ", questoes=" + questoes + ", disciplina=" + disciplina;
 				//+ ", provas=" + provas + "]";
 	}
 	

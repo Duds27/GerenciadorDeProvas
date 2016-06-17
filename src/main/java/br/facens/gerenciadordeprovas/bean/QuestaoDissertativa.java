@@ -14,15 +14,8 @@ import javax.persistence.Entity;
 @DiscriminatorValue(value="Dissertativa")
 public class QuestaoDissertativa extends Questao {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	@Override
-	public void gerarProva() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 }

@@ -75,6 +75,14 @@ public class ConteudoManagedBean {
 		return conteudos;
 	}
 	
+	// Retorna a lista de conteudos para a tabela a partir de uma disciplina
+	public List<Conteudo> getConteudos(Disciplina disciplina) {
+		if (conteudos == null)
+			conteudos = serviceConteudo.getConteudos(disciplina);
+
+		return conteudos;
+	}
+	
 	// Retorna a lista de disciplinas
 	public List<Disciplina> getDisciplinas() {
 		if (disciplinas == null)

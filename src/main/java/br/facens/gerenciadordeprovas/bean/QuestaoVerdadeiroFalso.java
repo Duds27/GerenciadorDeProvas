@@ -11,18 +11,23 @@ import javax.persistence.Entity;
  *
  */
 @Entity
-@DiscriminatorValue(value="TrueOrFalse")
+@DiscriminatorValue(value="VerdadeiroOuFalso")
 public class QuestaoVerdadeiroFalso extends Questao {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	@Override
-	public void gerarProva() {
-		// TODO Auto-generated method stub
-		
+	private TrueOrFalse enumTrueOrFalse;
+
+	public QuestaoVerdadeiroFalso() {
+		super();
+	}
+
+	public TrueOrFalse getEnumTrueOrFalse() {
+		return enumTrueOrFalse;
+	}
+
+	public void setEnumTrueOrFalse(TrueOrFalse enumTrueOrFalse) {
+		this.enumTrueOrFalse = enumTrueOrFalse;
 	}
 	
 }

@@ -15,8 +15,8 @@ import br.facens.gerenciadordeprovas.service.ConteudoService;
  * @author Eduardo
  *
  */
-@FacesConverter("conteudoConverter")
-public class ConteudoConverter implements Converter {
+@FacesConverter("conteudoDisciplinaConverter")
+public class ConteudoDisciplinaConverter implements Converter {
 
 	private ConteudoService servico = new ConteudoService();
 	

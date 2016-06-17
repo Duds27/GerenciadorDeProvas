@@ -6,6 +6,7 @@ package br.facens.gerenciadordeprovas.service;
 import java.util.List;
 
 import br.facens.gerenciadordeprovas.bean.Conteudo;
+import br.facens.gerenciadordeprovas.bean.Disciplina;
 import br.facens.gerenciadordeprovas.dao.ConteudoDAO;
 
 
@@ -25,6 +26,12 @@ public class ConteudoService {
 
 	public List<Conteudo> getConteudos() {
 		List<Conteudo> list = conteudoDAO.getAll(Conteudo.class);
+		conteudoDAO.closeEntityManager();
+		return list;
+	}
+	
+	public List<Conteudo> getConteudos(Disciplina disciplina) {
+		List<Conteudo> list = conteudoDAO.getAll(Conteudo.class, disciplina);
 		conteudoDAO.closeEntityManager();
 		return list;
 	}

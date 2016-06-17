@@ -36,6 +36,9 @@ public class Disciplina implements Serializable {
 	@OneToMany(mappedBy="disciplina", cascade = CascadeType.ALL)
 	private List<Conteudo> conteudo = new ArrayList<Conteudo>();
 	
+	@OneToMany(mappedBy="disciplina", cascade = CascadeType.ALL)
+	private List<Questao> questoes = new ArrayList<Questao>();
+	
 	/*@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "provaID")
 	private Prova prova;*/
@@ -81,6 +84,18 @@ public class Disciplina implements Serializable {
 	public void addConteudo(Conteudo conteudo) {
 		this.conteudo.add(conteudo);
 	}
+	
+	public List<Questao> getQuestoes() {
+		return questoes;
+	}
+
+	public void setQuestoes(List<Questao> questoes) {
+		this.questoes = questoes;
+	}
+
+	public void addQuestao(Questao questao) {
+		this.questoes.add(questao);
+	}
 
 	/*public Prova getProva() {
 		return prova;
@@ -90,6 +105,7 @@ public class Disciplina implements Serializable {
 		this.prova = prova;
 	}*/
 
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

@@ -3,6 +3,9 @@ package br.facens.gerenciadordeprovas.dao.generics;
 import java.io.Serializable;
 import java.util.List;
 
+import br.facens.gerenciadordeprovas.bean.Conteudo;
+import br.facens.gerenciadordeprovas.bean.Disciplina;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
@@ -52,6 +55,14 @@ public abstract class DAOImpl<T, I extends Serializable> {
 
 		return getEntityManager().createQuery("select o from " + classe.getSimpleName() + " o").getResultList();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public <K> List<T> getAll(Class<T> classe, K objeto) {
+		
+		return getEntityManager().createQuery("select c from " + classe.getSimpleName() + " c where c.disciplina.id = " + ((Disciplina) objeto).getId()).getResultList();
+		//"Select l From " + Conteudo.class.getSimpleName() + " l Where l.disciplina.id = 4")
+	}
+	
 
 	public EntityManager getEntityManager() {
 
