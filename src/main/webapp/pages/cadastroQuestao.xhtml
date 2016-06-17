@@ -35,6 +35,172 @@
 				<!-- TAB de cadastro de QUESTÃO ALTERNATIVA -->
 				<p:tab title="#{msg['pages.cadastroQuestao.questaoAlternativa']}">
 					<p:panelGrid>
+						<f:facet name="header">
+							<p:row>
+								<p:column/>
+								<p:column>
+									<p:outputLabel value="#{msg['pages.cadastroQuestao.titulo']}" />
+								</p:column>
+							</p:row>
+						</f:facet>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msg['pages.cadastroQuestao.nomeDisciplina']}" />
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="subject1" value="#{questaoAlternativaManagedBean.disciplina}" converter="disciplinaConverter" effect="fade">
+									<p:ajax listener="#{questaoAlternativaManagedBean.onSubjectChange}" update="content1" />
+									<f:selectItem itemLabel="#{msg['pages.cadastroQuestao.labelSubject']}" noSelectionOption="true" />
+									<f:selectItems value="#{questaoAlternativaManagedBean.disciplinas}" var="disc" itemLabel="#{disc.nome}" itemValue="#{disc}" />							
+								</p:selectOneMenu>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msg['pages.cadastroQuestao.nomeConteudo']}" />
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="content1" value="#{questaoAlternativaManagedBean.conteudo}" converter="conteudoConverter" effect="fade">
+									<f:selectItem itemLabel="#{msg['pages.cadastroQuestao.labelContent']}" noSelectionOption="true" />
+									<f:selectItems value="#{questaoAlternativaManagedBean.conteudos}" var="cont" itemLabel="#{cont.topico}" itemValue="#{cont}" />							
+								</p:selectOneMenu>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel
+									value="#{msg['pages.cadastroQuestao.dificuldadeQuestao']}" />
+							</p:column>
+							<p:column>
+								<p:inputText value="#{questaoAlternativaManagedBean.questao.dificuldade}" label="#{msg['pages.cadastroQuestao.labelDificuldade']}">
+							       	<f:validateDoubleRange minimum="1" maximum="10" />
+								</p:inputText>
+							</p:column>
+						</p:row>
+							
+						<p:row>
+							<p:column>
+								<h:outputLabel
+									value="#{msg['pages.cadastroQuestao.enunciadoQuestao']}" />
+							</p:column>
+							<p:column>
+								<p:inputTextarea rows="10" cols="150" value="#{questaoAlternativaManagedBean.questao.enunciado}" />
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel
+									value="#{msg['pages.cadastroQuestao.alternativa1']}" />
+							</p:column>
+							<p:column>
+								<p:inputText value="#{questaoAlternativaManagedBean.alternativa}" />
+							</p:column>
+							<p:column>
+								<p:commandButton value="#{msg['pages.cadastroQuestao.salvar']}"
+									action="#{questaoAlternativaManagedBean.addAlternativa}"
+									update=":formQuestao"
+									icon="ui-icon-disk" />
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel
+									value="#{msg['pages.cadastroQuestao.alternativa2']}" />
+							</p:column>
+							<p:column>
+								<p:inputText value="#{questaoAlternativaManagedBean.alternativa}" />
+							</p:column>
+							<p:column>
+								<p:commandButton value="#{msg['pages.cadastroQuestao.salvar']}"
+									action="#{questaoAlternativaManagedBean.addAlternativa}"
+									update=":formQuestao"
+									icon="ui-icon-disk" />
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel
+									value="#{msg['pages.cadastroQuestao.alternativa3']}" />
+							</p:column>
+							<p:column>
+								<p:inputText value="#{questaoAlternativaManagedBean.alternativa}" />
+							</p:column>
+							<p:column>
+								<p:commandButton value="#{msg['pages.cadastroQuestao.salvar']}"
+									action="#{questaoAlternativaManagedBean.addAlternativa}"
+									update=":formQuestao"
+									icon="ui-icon-disk" />
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel
+									value="#{msg['pages.cadastroQuestao.alternativa4']}" />
+							</p:column>
+							<p:column>
+								<p:inputText value="#{questaoAlternativaManagedBean.alternativa}" />
+							</p:column>
+							<p:column>
+								<p:commandButton value="#{msg['pages.cadastroQuestao.salvar']}"
+									action="#{questaoAlternativaManagedBean.addAlternativa}"
+									update=":formQuestao"
+									icon="ui-icon-disk" />
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel
+									value="#{msg['pages.cadastroQuestao.alternativa5']}" />
+							</p:column>
+							<p:column>
+								<p:inputText value="#{questaoAlternativaManagedBean.alternativa}" />
+							</p:column>
+							<p:column>
+								<p:commandButton value="#{msg['pages.cadastroQuestao.salvar']}"
+									action="#{questaoAlternativaManagedBean.addAlternativa}"
+									update=":formQuestao"
+									icon="ui-icon-disk" />
+							</p:column>
+						</p:row>
+						
+						<p:row>
+								<p:column>
+									<h:outputLabel
+										value="#{msg['pages.cadastroQuestao.respostaQuestao']}" />
+								</p:column>
+								<p:column>
+									<p:inputTextarea rows="10" cols="150" value="#{questaoAlternativaManagedBean.questao.resposta}" />
+								</p:column>
+							</p:row>
+							
+							<p:row>
+								<p:column>
+									<h:outputLabel
+										value="#{msg['pages.cadastroQuestao.tempoQuestao']}" />
+								</p:column>
+								<p:column>
+									<p:inputText value="#{questaoAlternativaManagedBean.questao.tempo}" label="#{msg['pages.cadastroQuestao.labelTempo']}">
+							        	<f:validateDoubleRange minimum="1" maximum="120" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+		
+							<p:row>
+								<p:column>
+									<p:commandButton value="#{msg['pages.cadastroQuestao.salvar']}"
+										action="#{questaoAlternativaManagedBean.save}"
+										update=":formQuestao"
+										icon="ui-icon-disk" />
+								</p:column>
+							</p:row>
 						
 					</p:panelGrid>
 				</p:tab>
@@ -124,7 +290,7 @@
 								<p:column>
 									<p:commandButton value="#{msg['pages.cadastroQuestao.salvar']}"
 										action="#{questaoDissertativaManagedBean.save}"
-										update=":formConteudoCadastro:tabelaConteudo"
+										update=":formQuestao, :formPergunta:tabelaPergunta"
 										icon="ui-icon-disk" />
 								</p:column>
 							</p:row>
@@ -163,6 +329,48 @@
 		</p:ajaxStatus>
 
 		<br />
+		
+		
+		<!-- Form de exibição do cadastro de disciplina realizado -->
+		<h:form id="formPergunta">
+			<p:dataTable 
+				value="#{questaoAlternativaManagedBean.questoes}"
+				id="tabelaPergunta"
+				var="questao" 
+				editable="true"
+				rowKey="#{questao.id}">
+				
+				<f:facet name="header">
+					<h:outputLabel value="#{msg['pages.cadastroConteudo.colunaFacet']}" />
+				</f:facet>
+				 					
+				<p:ajax event="rowEdit" listener="#{conteudoManagedBean.onRowEdit}" />
+
+				<p:column headerText="#{msg['pages.cadastroConteudo.colID']}" style="width:10%">
+					<h:outputText value="#{questao.id}" />
+				</p:column>
+				
+				<p:column headerText="#{msg['pages.cadastroConteudo.colID']}" style="width:10%">
+					<h:outputText value="#{questao}" />
+				</p:column>
+
+				<p:column headerText="#{msg['pages.cadastroConteudo.colTopico']}" style="width:50%">
+					<p:cellEditor>
+						<f:facet name="output"><h:outputText value="#{cont.topico}" /></f:facet>
+						<f:facet name="input"><p:inputText value="#{cont.topico}" /> </f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="#{msg['pages.cadastroConteudo.colDisciplina']}">
+					<h:outputText value="#{cont.disciplina.nome}" />
+				</p:column>
+				
+				<p:column headerText="#{msg['pages.cadastroConteudo.opcao']}" style="width:5%">
+           			<p:rowEditor />
+       			</p:column>
+			</p:dataTable>
+		</h:form>
+		
 
 	</ui:define>
 

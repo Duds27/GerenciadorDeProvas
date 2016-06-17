@@ -6,6 +6,7 @@ package br.facens.gerenciadordeprovas.service;
 import java.util.List;
 
 import br.facens.gerenciadordeprovas.bean.Questao;
+import br.facens.gerenciadordeprovas.bean.QuestaoAlternativa;
 import br.facens.gerenciadordeprovas.dao.QuestaoDAO;
 
 /**
@@ -24,6 +25,12 @@ public class QuestaoService {
 
 	public List<Questao> getQuestoes() {
 		List<Questao> list = questaoDAO.getAll(Questao.class);
+		questaoDAO.closeEntityManager();
+		return list;
+	}
+	
+	public List<Questao> getQuestoesAlternativas() {
+		List<Questao> list = questaoDAO.getAllAlternativa(QuestaoAlternativa.class);
 		questaoDAO.closeEntityManager();
 		return list;
 	}

@@ -3,15 +3,15 @@ package br.facens.gerenciadordeprovas.dao.generics;
 import java.io.Serializable;
 import java.util.List;
 
-import br.facens.gerenciadordeprovas.bean.Conteudo;
-import br.facens.gerenciadordeprovas.bean.Disciplina;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 
-public abstract class DAOImpl<T, I extends Serializable> {
+import br.facens.gerenciadordeprovas.bean.Disciplina;
+import br.facens.gerenciadordeprovas.bean.Questao;
+
+public abstract class DAOImpl<T, I extends Serializable, C extends Questao> {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
@@ -52,6 +52,12 @@ public abstract class DAOImpl<T, I extends Serializable> {
 
 	@SuppressWarnings("unchecked")
 	public List<T> getAll(Class<T> classe) {
+
+		return getEntityManager().createQuery("select o from " + classe.getSimpleName() + " o").getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<T> getAllAlternativa(Class<C> classe) {
 
 		return getEntityManager().createQuery("select o from " + classe.getSimpleName() + " o").getResultList();
 	}

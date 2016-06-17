@@ -9,10 +9,10 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -33,7 +33,7 @@ public class Conteudo implements Serializable {
 	private long id;
 	private String topico;
 	
-	@OneToMany(mappedBy="conteudo")
+	@OneToMany(mappedBy="conteudo", cascade=CascadeType.ALL)
 	private List<Questao> questoes;
 
 	@ManyToOne(cascade = CascadeType.ALL)
