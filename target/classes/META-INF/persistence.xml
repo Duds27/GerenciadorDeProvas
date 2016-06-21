@@ -9,6 +9,7 @@
 		<class>br.facens.gerenciadordeprovas.bean.Professor</class>
 		<class>br.facens.gerenciadordeprovas.bean.QuestaoDissertativa</class>
 		<class>br.facens.gerenciadordeprovas.bean.QuestaoVerdadeiroFalso</class>
+		<class>br.facens.gerenciadordeprovas.bean.Alternativa</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/ProjetoMavenGerenciadorDeProvas;create=true"/>
 			<property name="javax.persistence.jdbc.user" value="app"/>

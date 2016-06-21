@@ -124,7 +124,7 @@ public class Questao implements Serializable {
 	public void setProva(List<Prova> prova) {
 		this.prova = prova;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

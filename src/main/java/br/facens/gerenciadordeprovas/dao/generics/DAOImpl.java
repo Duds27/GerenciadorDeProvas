@@ -11,7 +11,7 @@ import javax.persistence.Persistence;
 import br.facens.gerenciadordeprovas.bean.Disciplina;
 import br.facens.gerenciadordeprovas.bean.Questao;
 
-public abstract class DAOImpl<T, I extends Serializable, C extends Questao> {
+public abstract class DAOImpl<T, I extends Serializable, C,D extends Questao> {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
@@ -57,7 +57,13 @@ public abstract class DAOImpl<T, I extends Serializable, C extends Questao> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<T> getAllAlternativa(Class<C> classe) {
+	public List<C> getAllAlternativa(Class<C> classe) {
+
+		return getEntityManager().createQuery("select o from " + classe.getSimpleName() + " o").getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<D> getAllVerdadeiroFalso(Class<D> classe) {
 
 		return getEntityManager().createQuery("select o from " + classe.getSimpleName() + " o").getResultList();
 	}

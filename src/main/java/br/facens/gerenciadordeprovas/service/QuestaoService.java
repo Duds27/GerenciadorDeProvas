@@ -7,6 +7,7 @@ import java.util.List;
 
 import br.facens.gerenciadordeprovas.bean.Questao;
 import br.facens.gerenciadordeprovas.bean.QuestaoAlternativa;
+import br.facens.gerenciadordeprovas.bean.QuestaoVerdadeiroFalso;
 import br.facens.gerenciadordeprovas.dao.QuestaoDAO;
 
 /**
@@ -22,6 +23,18 @@ public class QuestaoService {
 		questaoDAO.closeEntityManager();
 		return questao;
 	}
+	
+	public QuestaoAlternativa salvar(QuestaoAlternativa questao) {
+		questao = (QuestaoAlternativa) questaoDAO.save(questao);
+		questaoDAO.closeEntityManager();
+		return questao;
+	}
+	
+	public QuestaoVerdadeiroFalso salvar(QuestaoVerdadeiroFalso questao) {
+		questao = (QuestaoVerdadeiroFalso) questaoDAO.save(questao);
+		questaoDAO.closeEntityManager();
+		return questao;
+	}
 
 	public List<Questao> getQuestoes() {
 		List<Questao> list = questaoDAO.getAll(Questao.class);
@@ -29,8 +42,14 @@ public class QuestaoService {
 		return list;
 	}
 	
-	public List<Questao> getQuestoesAlternativas() {
-		List<Questao> list = questaoDAO.getAllAlternativa(QuestaoAlternativa.class);
+	public List<QuestaoAlternativa> getQuestoesAlternativas() {
+		List<QuestaoAlternativa> list = questaoDAO.getAllAlternativa(QuestaoAlternativa.class);
+		questaoDAO.closeEntityManager();
+		return list;
+	}
+	
+	public List<QuestaoVerdadeiroFalso> getQuestoesVerdadeiroFalso() {
+		List<QuestaoVerdadeiroFalso> list = questaoDAO.getAllVerdadeiroFalso(QuestaoVerdadeiroFalso.class);
 		questaoDAO.closeEntityManager();
 		return list;
 	}
