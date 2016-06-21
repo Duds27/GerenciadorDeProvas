@@ -55,7 +55,7 @@ public class Prova {
 		mappedBy = "prova",
 		cascade = CascadeType.ALL
 	)*/
-	private List<Disciplina> disciplinas;
+	private Disciplina disciplina;
 	
 	@ManyToOne(
 		cascade = CascadeType.ALL
@@ -127,12 +127,12 @@ public class Prova {
 		this.conteudos = conteudos;
 	}
 	
-	public List<Disciplina> getDisciplinas() {
-		return disciplinas;
+	public Disciplina getDisciplina() {
+		return disciplina;
 	}
 
-	public void setDisciplinas(List<Disciplina> disciplinas) {
-		this.disciplinas = disciplinas;
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}
 	
 	public Prova getProva() {
@@ -150,7 +150,7 @@ public class Prova {
 		result = prime * result + ((conteudos == null) ? 0 : conteudos.hashCode());
 		result = prime * result + ((curso == null) ? 0 : curso.hashCode());
 		result = prime * result + ((dataAplicacao == null) ? 0 : dataAplicacao.hashCode());
-		result = prime * result + ((disciplinas == null) ? 0 : disciplinas.hashCode());
+		result = prime * result + ((disciplina == null) ? 0 : disciplina.hashCode());
 		result = prime * result + ((faculdade == null) ? 0 : faculdade.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((prova == null) ? 0 : prova.hashCode());
@@ -193,11 +193,11 @@ public class Prova {
 		} else if (!dataAplicacao.equals(other.dataAplicacao)) {
 			return false;
 		}
-		if (disciplinas == null) {
-			if (other.disciplinas != null) {
+		if (disciplina == null) {
+			if (other.disciplina != null) {
 				return false;
 			}
-		} else if (!disciplinas.equals(other.disciplinas)) {
+		} else if (!disciplina.equals(other.disciplina)) {
 			return false;
 		}
 		if (faculdade == null) {
@@ -241,7 +241,7 @@ public class Prova {
 	public String toString() {
 		return "Prova [id=" + id + ", curso=" + curso + ", faculdade=" + faculdade + ", turma=" + turma
 				+ ", dataAplicacao=" + dataAplicacao + ", quantidadeQuestoes=" + quantidadeQuestoes + ", questoes="
-				+ questoes + ", conteudos=" + conteudos + ", disciplinas=" + disciplinas + ", prova=" + prova + "]";
+				+ questoes + ", conteudos=" + conteudos + ", disciplinas=" + disciplina + ", prova=" + prova + "]";
 	}
 	
 }
