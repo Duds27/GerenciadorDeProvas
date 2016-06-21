@@ -124,6 +124,10 @@
            			<p:rowEditor />
        			</p:column>
 			</p:dataTable>
+			<h:commandLink>
+			<h:outputText  value="PDF" />
+			<p:dataExporter type="pdf" target="tabelaConteudo"  fileName="ListadeConteudos"/>
+			</h:commandLink>
 		</h:form>
 	</ui:define>
 
