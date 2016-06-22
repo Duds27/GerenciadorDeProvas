@@ -1,0 +1,35 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
+	
+	<ui:define name="title">
+		<h:outputText value="#{msg['pages.geraProva.title']}" />
+	</ui:define>
+
+	<ui:define name="principal">
+	
+	<h1><p:outputLabel value="#{msg['pages.geraProva.menu']}" /> </h1>
+ 	<h:form id="formProvas">
+    <p:panelGrid columns="2">
+			<p:outputLabel value="#{msg['pages.geraProva.prova.nome']}" />
+			<p:selectOneMenu value="#{PDFManagedBean.prova}"
+				converter="ProvaConverter">
+				<f:selectItem itemValue="" itemLabel="#{msg['pages.geraProva.prova.msg']}" />
+				<f:selectItems value="#{PDFManagedBean.provas}" var="aux"
+					itemValue="#{aux}" itemLabel="#{aux.nomeprova}" />
+			</p:selectOneMenu>
+	
+		</p:panelGrid>
+		<p:commandButton value="#{msg['pages.comuns.form.btnGerar']}" action="#{PDFManagedBean.GeradorPDF}"
+			update=":formProvas" />
+		<p:commandButton value="#{msg['pages.comuns.form.btnGerarGabarito']}" action="#{PDFManagedBean.GeradorGabaritoPDF}"
+			update=":formProvas" />
+	</h:form>
+
+	</ui:define>
+</ui:composition>
