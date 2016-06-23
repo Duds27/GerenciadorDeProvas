@@ -44,6 +44,7 @@
 						<p:column>
 							<p:selectOneMenu id="subject2" value="#{questaoVerdadeiroFalsoManagedBean.disciplina}" converter="disciplinaConverter" effect="fade">
 								<p:ajax listener="#{questaoVerdadeiroFalsoManagedBean.onSubjectChange}" update="content2" />
+								<p:ajax event="itemSelect" update=":formQuestao" />
 								<f:selectItem itemLabel="#{msg['pages.cadastroQuestao.labelSubject']}" noSelectionOption="true" />
 								<f:selectItems value="#{questaoVerdadeiroFalsoManagedBean.disciplinas}" var="disc" itemLabel="#{disc.nome}" itemValue="#{disc}" />							
 							</p:selectOneMenu>

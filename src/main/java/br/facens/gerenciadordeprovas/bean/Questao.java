@@ -61,8 +61,8 @@ public class Questao implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Conteudo conteudo;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Disciplina disciplina;
+	//@ManyToOne(cascade = CascadeType.ALL)
+	//private Disciplina disciplina;
 	
 	/*@ManyToMany(
 		mappedBy = "questoes",
@@ -126,13 +126,13 @@ public class Questao implements Serializable {
 		this.conteudo = conteudo;
 	}
 	
-	public Disciplina getDisciplina() {
+	/*public Disciplina getDisciplina() {
 		return disciplina;
 	}
 
 	public void setDisciplina(Disciplina disciplina) {
 		this.disciplina = disciplina;
-	}
+	}*/
 
 	public List<Prova> getProva() {
 		return prova;
@@ -148,7 +148,7 @@ public class Questao implements Serializable {
 		int result = 1;
 		result = prime * result + ((conteudo == null) ? 0 : conteudo.hashCode());
 		result = prime * result + dificuldade;
-		result = prime * result + ((disciplina == null) ? 0 : disciplina.hashCode());
+		//result = prime * result + ((disciplina == null) ? 0 : disciplina.hashCode());
 		result = prime * result + ((enunciado == null) ? 0 : enunciado.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((prova == null) ? 0 : prova.hashCode());
@@ -180,13 +180,13 @@ public class Questao implements Serializable {
 		if (dificuldade != other.dificuldade) {
 			return false;
 		}
-		if (disciplina == null) {
+		/*if (disciplina == null) {
 			if (other.disciplina != null) {
 				return false;
 			}
 		} else if (!disciplina.equals(other.disciplina)) {
 			return false;
-		}
+		}*/
 		if (enunciado == null) {
 			if (other.enunciado != null) {
 				return false;
@@ -223,8 +223,8 @@ public class Questao implements Serializable {
 	@Override
 	public String toString() {
 		return "Questao [id=" + id + ", dificuldade=" + dificuldade + ", enunciado=" + enunciado + ", resposta="
-				+ resposta + ", tempo=" + tempo + ", quantidadeUso=" + quantidadeUso + ", conteudo=" + conteudo
-				+ ", disciplina=" + disciplina + ", prova=" + prova + "]";
+				+ resposta + ", tempo=" + tempo + ", quantidadeUso=" + quantidadeUso + ", conteudo=" + conteudo + ", prova=" + prova + "]";
+				//+ ", disciplina=" + disciplina + ", prova=" + prova + "]";
 	}
 	public void postProcessXLS(Object document) {
         HSSFWorkbook wb = (HSSFWorkbook) document;

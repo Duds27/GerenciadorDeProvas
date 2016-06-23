@@ -27,7 +27,7 @@ import br.facens.gerenciadordeprovas.service.QuestaoService;
  * @author Eduardo
  *
  */
-@ManagedBean(eager=true)
+@ManagedBean
 @ViewScoped
 public class QuestaoVerdadeiroFalsoManagedBean {
 
