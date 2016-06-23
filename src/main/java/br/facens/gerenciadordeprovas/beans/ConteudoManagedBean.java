@@ -133,7 +133,8 @@ public class ConteudoManagedBean {
         pdf.open();
         pdf.setPageSize(PageSize.A4);
  
-        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        @SuppressWarnings("unused")
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         //String logo = externalContext.getRealPath("") + File.separator + "resources" + File.separator + "demo" + File.separator + "images" + File.separator + "prime_logo.png";
          
         //pdf.add(Image.getInstance(logo));

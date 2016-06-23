@@ -19,6 +19,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -64,11 +65,11 @@ public class Questao implements Serializable {
 	//@ManyToOne(cascade = CascadeType.ALL)
 	//private Disciplina disciplina;
 	
-	/*@ManyToMany(
+	@ManyToMany(
 		mappedBy = "questoes",
 		cascade=CascadeType.ALL
-	)*/
-	private List<Prova> prova;
+	)
+	private List<Prova> provas;
 
 	public long getId() {
 		return id;
@@ -134,12 +135,12 @@ public class Questao implements Serializable {
 		this.disciplina = disciplina;
 	}*/
 
-	public List<Prova> getProva() {
-		return prova;
+	public List<Prova> getProvas() {
+		return provas;
 	}
 
-	public void setProva(List<Prova> prova) {
-		this.prova = prova;
+	public void setProvas(List<Prova> provas) {
+		this.provas = provas;
 	}
 	
 	@Override
@@ -151,7 +152,7 @@ public class Questao implements Serializable {
 		//result = prime * result + ((disciplina == null) ? 0 : disciplina.hashCode());
 		result = prime * result + ((enunciado == null) ? 0 : enunciado.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((prova == null) ? 0 : prova.hashCode());
+		result = prime * result + ((provas == null) ? 0 : provas.hashCode());
 		result = prime * result + quantidadeUso;
 		result = prime * result + ((resposta == null) ? 0 : resposta.hashCode());
 		result = prime * result + tempo;
@@ -197,11 +198,11 @@ public class Questao implements Serializable {
 		if (id != other.id) {
 			return false;
 		}
-		if (prova == null) {
-			if (other.prova != null) {
+		if (provas == null) {
+			if (other.provas != null) {
 				return false;
 			}
-		} else if (!prova.equals(other.prova)) {
+		} else if (!provas.equals(other.provas)) {
 			return false;
 		}
 		if (quantidadeUso != other.quantidadeUso) {
@@ -223,7 +224,7 @@ public class Questao implements Serializable {
 	@Override
 	public String toString() {
 		return "Questao [id=" + id + ", dificuldade=" + dificuldade + ", enunciado=" + enunciado + ", resposta="
-				+ resposta + ", tempo=" + tempo + ", quantidadeUso=" + quantidadeUso + ", conteudo=" + conteudo + ", prova=" + prova + "]";
+				+ resposta + ", tempo=" + tempo + ", quantidadeUso=" + quantidadeUso + ", conteudo=" + conteudo + ", prova=" + provas + "]";
 				//+ ", disciplina=" + disciplina + ", prova=" + prova + "]";
 	}
 	public void postProcessXLS(Object document) {

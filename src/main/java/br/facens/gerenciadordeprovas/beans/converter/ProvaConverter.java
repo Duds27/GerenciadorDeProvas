@@ -5,6 +5,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+import br.facens.gerenciadordeprovas.bean.Disciplina;
 import br.facens.gerenciadordeprovas.bean.Prova;
 import br.facens.gerenciadordeprovas.service.ProvaService;
 
@@ -17,10 +18,9 @@ public class ProvaConverter implements Converter {
 	public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
 		if (value != null && !value.isEmpty()) {
 			  for(Prova f : servico.getProvas()) {
-				  f = null;
+				  if(f.getNome().equals(value))
+					  	return f;
 			  }
-				 //if(f.getNomeprova().equals(value))
-				  	//return f;
 		}
 		return null;
 	}
@@ -30,8 +30,7 @@ public class ProvaConverter implements Converter {
 		if (prova == null || prova.equals("")) {
 			return null;
 		} else {
-			return null;
-			//return ((Prova) prova).getNomeprova();
+			return ((Prova) prova).getNome();
 		}
 	}
 }

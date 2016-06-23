@@ -3,17 +3,17 @@
  */
 package br.facens.gerenciadordeprovas.bean;
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -25,6 +25,7 @@ import javax.persistence.TemporalType;
 public class Prova {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	private String curso;
 	private String faculdade;
@@ -32,16 +33,16 @@ public class Prova {
 	private String nome;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar dataAplicacao;
+	private Date dataAplicacao;
 	
-	private int quantidadeQuestoes;
+//	private int quantidadeQuestoes;
 
-	/*@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(
 		name = "Prova_Questoes",
 		joinColumns = { @JoinColumn(name = "provaID") },
 		inverseJoinColumns = { @JoinColumn(name = "questaoID") }
-	)*/
+	)
 	private List<Questao> questoes;
 	
 	/*@ManyToMany(cascade = CascadeType.ALL)
@@ -58,10 +59,10 @@ public class Prova {
 	)*/
 	private Disciplina disciplina;
 	
-	@ManyToOne(
+	/*@ManyToOne(
 		cascade = CascadeType.ALL
-	)
-	private Prova prova;
+	)*/
+	//private Prova prova;
 	
 	
 	public long getId() {
@@ -104,21 +105,21 @@ public class Prova {
 		this.nome = nome;
 	}
 
-	public Calendar getDataAplicacao() {
+	public Date getDataAplicacao() {
 		return dataAplicacao;
 	}
 	
-	public void setDataAplicacao(Calendar dataAplicacao) {
+	public void setDataAplicacao(Date dataAplicacao) {
 		this.dataAplicacao = dataAplicacao;
 	}
 	
-	public int getQuantidadeQuestoes() {
+	/*public int getQuantidadeQuestoes() {
 		return quantidadeQuestoes;
 	}
 	
 	public void setQuantidadeQuestoes(int quantidadeQuestoes) {
 		this.quantidadeQuestoes = quantidadeQuestoes;
-	}
+	}*/
 
 	public List<Questao> getQuestoes() {
 		return questoes;
@@ -144,13 +145,13 @@ public class Prova {
 		this.disciplina = disciplina;
 	}
 	
-	public Prova getProva() {
+	/*public Prova getProva() {
 		return prova;
 	}
 
 	public void setProva(Prova prova) {
 		this.prova = prova;
-	}
+	}*/
 
 	@Override
 	public int hashCode() {
@@ -163,8 +164,8 @@ public class Prova {
 		result = prime * result + ((faculdade == null) ? 0 : faculdade.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((prova == null) ? 0 : prova.hashCode());
-		result = prime * result + quantidadeQuestoes;
+		//result = prime * result + ((prova == null) ? 0 : prova.hashCode());
+		//result = prime * result + quantidadeQuestoes;
 		result = prime * result + ((questoes == null) ? 0 : questoes.hashCode());
 		result = prime * result + ((turma == null) ? 0 : turma.hashCode());
 		return result;
@@ -227,16 +228,16 @@ public class Prova {
 		} else if (!nome.equals(other.nome)) {
 			return false;
 		}
-		if (prova == null) {
+		/*if (prova == null) {
 			if (other.prova != null) {
 				return false;
 			}
 		} else if (!prova.equals(other.prova)) {
 			return false;
-		}
-		if (quantidadeQuestoes != other.quantidadeQuestoes) {
+		}*/
+		/*if (quantidadeQuestoes != other.quantidadeQuestoes) {
 			return false;
-		}
+		}*/
 		if (questoes == null) {
 			if (other.questoes != null) {
 				return false;
@@ -257,9 +258,9 @@ public class Prova {
 	@Override
 	public String toString() {
 		return "Prova [id=" + id + ", curso=" + curso + ", faculdade=" + faculdade + ", turma=" + turma + ", nome="
-				+ nome + ", dataAplicacao=" + dataAplicacao + ", quantidadeQuestoes=" + quantidadeQuestoes
-				+ ", questoes=" + questoes + ", conteudos=" + conteudos + ", disciplina=" + disciplina + ", prova="
-				+ prova + "]";
+				+ nome + ", dataAplicacao=" + dataAplicacao// + ", quantidadeQuestoes=" + quantidadeQuestoes
+				+ ", questoes=" + questoes + ", conteudos=" + conteudos + ", disciplina=" + disciplina;// + ", prova="
+			//	+ prova + "]";
 	}
 	
 }

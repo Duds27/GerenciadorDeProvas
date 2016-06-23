@@ -21,7 +21,7 @@
 							name="images/icon_livro_100x100.png" />
 					</p:column>
 					<p:column>
-						<p:outputLabel value="#{msg['pages.cadastroDisciplina.titulo']}" />
+						<p:outputLabel value="#{msg['pages.cadastroProva.titulo']}" />
 					</p:column>
 				</p:row>
 			</f:facet>
@@ -29,12 +29,11 @@
 		
 
 
-
-		 
-		
+	
+			
 		
 		<h:form id="formTableDisciplinas">
-		
+
 		    <p:growl id="growl" showDetail="true" />
 		
 			<p:dataTable value="#{testeManagedBean.disciplinas}" var="disc"
@@ -58,6 +57,18 @@
 				</p:column>
 					
 			</p:dataTable>
+			
+			<h:commandLink>
+			<h:outputText  value="PDF" />
+			<p:dataExporter type="pdf" target="tableDisciplinas"  fileName="ListadeConteudos"/>
+			</h:commandLink>
+			
+			<h:commandLink id="pdf">
+        <p:graphicImage name="images/pdf.png" />
+        <p:dataExporter type="pdf" target="tableDisciplinas" fileName="cars" preProcessor="#{ProvaManagedBean.GeradorPDF}" />
+    </h:commandLink>
+			
+			
 		</h:form>
 
 
@@ -116,8 +127,22 @@
 				<p:column headerText="DISCIPLINA">
 					<h:outputText value="#{quest.conteudo.disciplina.nome}" />
 				</p:column>
+				
+				<p:column>
+					<p:commandButton value="#{msg['pages.cadastroProva.add']}"
+						action="#{testeManagedBean.addQuestao(quest)}"
+						update=":formTableQuestoesProva"
+						icon="ui-icon-disk" />
+				</p:column>
+				
 	
 			</p:dataTable>
+			
+			<h:commandLink>
+		   <h:outputText  value="PDF" />
+		   <p:dataExporter type="pdf" target="tabelaConteudo"  fileName="ListadeConteudos"/>
+		   </h:commandLink>
+			
 		</h:form>
 		
 
@@ -146,14 +171,107 @@
 		<br />
 
 
-
-		
+		<h:form id="formTableQuestoesProva">
+		    
+		    <p:growl id="growl" showDetail="true" />
+		    
+			<p:dataTable value="#{testeManagedBean.questoes}" var="aux"	id="tableQuestoesProva">
+				
+				<f:facet name="header">
+					<h:outputLabel value="LISTA DE QUESTOES" />
+				</f:facet>
+				
+				<p:column headerText="ID">
+					<h:outputText value="#{aux.id}" />
+				</p:column>
 	
-
-
+				<p:column headerText="ENUNCIADO">
+							<p:outputLabel value="#{aux.enunciado}" />
+				</p:column>
+	
+				<p:column headerText="DISCIPLINA">
+					<h:outputText value="#{aux.conteudo.disciplina.nome}" />
+				</p:column>
+								
+				<p:column>
+					<p:commandButton value="#{msg['pages.cadastroProva.remove']}"
+						action="#{testeManagedBean.removeQuestao(aux)}"
+						update=":formTableQuestoesProva"
+						icon="ui-icon-disk" />
+				</p:column>
+	
+			</p:dataTable>
+			
+			
+			
+			<p:row>
+				<p:column>
+					<h:outputLabel
+						value="#{msg['pages.cadastroProva.curso']}" />
+				</p:column>
+				<p:column>
+					<h:inputText value="#{testeManagedBean.prova.curso}"></h:inputText>
+				</p:column>
+			</p:row>
+			
+			<p:row>
+				<p:column>
+					<h:outputLabel
+						value="#{msg['pages.cadastroProva.faculdade']}" />
+				</p:column>
+				<p:column>
+					<h:inputText value="#{testeManagedBean.prova.faculdade}"></h:inputText>
+				</p:column>
+			</p:row>
+			
+			<p:row>
+				<p:column>
+					<h:outputLabel
+						value="#{msg['pages.cadastroProva.turma']}" />
+				</p:column>
+				<p:column>
+					<h:inputText value="#{testeManagedBean.prova.turma}"></h:inputText>
+				</p:column>
+			</p:row>
+			
+			<p:row>
+				<p:column>
+					<h:outputLabel
+						value="#{msg['pages.cadastroProva.nome']}" />
+				</p:column>
+				<p:column>
+					<h:inputText value="#{testeManagedBean.prova.nome}"></h:inputText>
+				</p:column>
+			</p:row>
+			
+			<p:row>
+				<p:column>
+					<h:outputLabel
+						value="#{msg['pages.cadastroProva.data']}" />
+				</p:column>
+				<p:column>
+					<p:calendar id="popup" value="#{testeManagedBean.prova.dataAplicacao}" />
+				</p:column>
+			</p:row>
+			
+			
+			
+			
+			
+			
+			
+			<p:row>
+				<p:column>
+					<p:commandButton value="#{msg['pages.cadastroProva.salvar']}"
+						action="#{testeManagedBean.save}"
+						icon="ui-icon-disk" />
+				</p:column>
+			</p:row>
+							
+		</h:form>
 		
-
-
+		
+			
 
 
 	</ui:define>

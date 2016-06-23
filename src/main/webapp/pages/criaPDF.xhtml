@@ -15,21 +15,53 @@
 	
 	<h1><p:outputLabel value="#{msg['pages.geraProva.menu']}" /> </h1>
  	<h:form id="formProvas">
-    <p:panelGrid columns="2">
-			<p:outputLabel value="#{msg['pages.geraProva.prova.nome']}" />
-			<p:selectOneMenu value="#{ProvaManagedBean.prova}"
+    		<p:outputLabel value="#{msg['pages.geraProva.prova.nome']}" />
+			<p:selectOneMenu value="#{provaManagedBean.prova}"
 				converter="converterProva">
+				<p:ajax event="itemSelect" />
 				<f:selectItem itemValue="" itemLabel="#{msg['pages.geraProva.prova.msg']}" />
-				<f:selectItems value="#{ProvaManagedBean.provas}" var="aux"
-					itemValue="#{aux}" itemLabel="#{aux.nomeprova}" />
+				<f:selectItems value="#{provaManagedBean.provas}" var="aux"
+					itemValue="#{aux}" itemLabel="#{aux.nome}" />
 			</p:selectOneMenu>
 	
-		</p:panelGrid>
 		<p:commandButton value="#{msg['pages.comuns.form.btnGerar']}" action="#{ProvaManagedBean.GeradorPDF}"
 			update=":formProvas" />
 		<p:commandButton value="#{msg['pages.comuns.form.btnGerarGabarito']}" action="#{ProvaManagedBean.GeradorGabaritoPDF}"
 			update=":formProvas" />
 	</h:form>
+	
+	<h:form id="formTableQuestoes">
+		    
+		    <p:growl id="growl" showDetail="true" />
+		    
+			<p:dataTable value="#{provaManagedBean.provas}" var="quest"	id="tableQuestoes"
+				selectionMode="single" selection="#{provaManagedBean.prova}" rowKey="#{quest.id}"
+			>
+				
+				<f:facet name="header">
+					<h:outputLabel value="QUESTOES" />
+				</f:facet>
+				
+
+				<p:ajax event="rowSelect" listener="#{provaManagedBean.onRowSelect}" update=":formTableQuestoes" />
+				
+				<p:column headerText="ID">
+					<h:outputText value="#{quest.id}" />
+				</p:column>
+	
+				<p:column headerText="ENUNCIADO">
+							<p:outputLabel value="#{quest.nome}" />
+				</p:column>
+	
+				
+	
+			</p:dataTable>
+			
+			
+			
+		
+		</h:form>
+	
 
 	</ui:define>
 </ui:composition>
