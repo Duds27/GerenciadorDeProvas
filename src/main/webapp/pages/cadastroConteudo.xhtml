@@ -25,11 +25,9 @@
 					</p:column>
 				</p:row>
 			</f:facet>
-		</p:panelGrid>
 
 			<!-- Form de cadastro de conteúdo -->
 			<h:form id="formConteudo">
-			<p:panelGrid>
 				<p:row>
 					<p:column>
 						<h:outputLabel
@@ -49,10 +47,9 @@
 						</p:selectOneMenu>
 					</p:column>
 				</p:row>
-				</p:panelGrid>
 			</h:form>
 
-		
+		</p:panelGrid>
 
 		<p:row>
 			<p:column>
@@ -127,8 +124,9 @@
            			<p:rowEditor />
        			</p:column>
 			</p:dataTable>
+			
 			<h:commandLink id="excel">
-       		 <p:graphicImage name="images/excel.png" />
+       		<p:graphicImage name="images/excel.png" />
         	<p:dataExporter type="xls" target="tabelaConteudo" fileName="Conteudo" postProcessor="#{conteudoManagedBean.postProcessXLS}" />
     		</h:commandLink>
  

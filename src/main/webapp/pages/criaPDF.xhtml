@@ -17,17 +17,17 @@
  	<h:form id="formProvas">
     <p:panelGrid columns="2">
 			<p:outputLabel value="#{msg['pages.geraProva.prova.nome']}" />
-			<p:selectOneMenu value="#{PDFManagedBean.prova}"
+			<p:selectOneMenu value="#{ProvaManagedBean.prova}"
 				converter="ProvaConverter">
 				<f:selectItem itemValue="" itemLabel="#{msg['pages.geraProva.prova.msg']}" />
-				<f:selectItems value="#{PDFManagedBean.provas}" var="aux"
+				<f:selectItems value="#{ProvaManagedBean.provas}" var="aux"
 					itemValue="#{aux}" itemLabel="#{aux.nomeprova}" />
 			</p:selectOneMenu>
 	
 		</p:panelGrid>
-		<p:commandButton value="#{msg['pages.comuns.form.btnGerar']}" action="#{PDFManagedBean.GeradorPDF}"
+		<p:commandButton value="#{msg['pages.comuns.form.btnGerar']}" action="#{ProvaManagedBean.GeradorPDF}"
 			update=":formProvas" />
-		<p:commandButton value="#{msg['pages.comuns.form.btnGerarGabarito']}" action="#{PDFManagedBean.GeradorGabaritoPDF}"
+		<p:commandButton value="#{msg['pages.comuns.form.btnGerarGabarito']}" action="#{ProvaManagedBean.GeradorGabaritoPDF}"
 			update=":formProvas" />
 	</h:form>
 
