@@ -97,13 +97,13 @@ public class ProvaManagedBean {
         		  pdf.add(new Paragraph(""+(i + 1)+") " +  
      	                 prova.getQuestoes().get(i).getEnunciado()));
         		  pdf.add(new Paragraph("  A - " +  
-     	                 alt.getAlternativa()));
+     	                 alt.getAlternativa().getAlternativa1()));
         		  pdf.add(new Paragraph("  B - " +  
-        				  alt.getAlternativa()));
+        				  alt.getAlternativa().getAlternativa2()));
         		  pdf.add(new Paragraph("  C - " +  
-        				  alt.getAlternativa()));
+        				  alt.getAlternativa().getAlternativa3()));
         		  pdf.add(new Paragraph("  D - " +  
-        				  alt.getAlternativa()));
+        				  alt.getAlternativa().getAlternativa4()));
         	     pdf.add(Chunk.NEWLINE);
         	  }
         	  else if(prova.getQuestoes().get(i) instanceof QuestaoVerdadeiroFalso)

@@ -7,12 +7,7 @@
     <p:growl id="messages" showDetail="false"/>
     <h3>Menu</h3>
     <p:menu toggleable="true">
-        <p:submenu label="Provas">
-            <p:menuitem value="Cadastrar" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" />
-            <p:menuitem value="Alterar" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
-            <p:menuitem value="Apagar" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
-            <p:menuitem value="Listar" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
-        </p:submenu>
+        
         <p:submenu label="#{msg['pages.base.menu.cadastroDisciplina']}">
             <p:menuitem value="#{msg['pages.base.menu.cadastroDisciplina']}" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" url="cadastroDisciplinas.xhtml" />
         </p:submenu>
@@ -27,19 +22,6 @@
         <p:submenu label="#{msg['pages.base.menu.cadastroProva']}">
             <p:menuitem value="#{msg['pages.base.menu.cadastroProva']}" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" url="cadastroProva.xhtml" />
 			<p:menuitem value="#{msg['pages.base.menu.criaPDF']}" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" url="criaPDF.xhtml" />
-            <p:menuitem value="Questão" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" url="questao.xhtml" />
-        </p:submenu>
-        <p:submenu label="Conteudo">
-            <p:menuitem value="Cadastrar" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" />
-            <p:menuitem value="Alterar" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
-            <p:menuitem value="Apagar" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
-            <p:menuitem value="Listar" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
-        </p:submenu>
-        <p:submenu label="Perguntas">
-            <p:menuitem value="Cadastrar" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" />
-            <p:menuitem value="Alterar" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
-            <p:menuitem value="Apagar" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
-            <p:menuitem value="Listar" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
         </p:submenu>
     </p:menu>
 </h:form>
