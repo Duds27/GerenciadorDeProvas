@@ -11,6 +11,8 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import br.facens.gerenciadordeprovas.bean.Conteudo;
+import br.facens.gerenciadordeprovas.bean.Disciplina;
+import br.facens.gerenciadordeprovas.bean.Questao;
 
 
 /**
@@ -37,6 +39,19 @@ public class AppTeste {
 		      System.out.println(l.getDisciplina().getNome());	
 		}
 			
+		q = em.createQuery("Select l From " + Questao.class.getSimpleName() + " l Where l.conteudo.id = " + Integer.parseInt("7"));
+		List<Questao> lista = q.getResultList();
+		for(Questao l: lista)
+		{
+		      System.out.println("Disciplina: " + l.getConteudo().getDisciplina().getNome() + " Conteudo: " + l.getConteudo().getTopico());
+		}
+		q = em.createQuery("Select l From " + Questao.class.getSimpleName() +" l Inner Join " + Conteudo.class.getSimpleName() +  " c On c.disciplina.id = l.disciplina.id Where l.disciplina.id = " + Integer.parseInt("4"));
+		list = q.getResultList();
+		for (Conteudo c : list) {
+			System.out.println("Conteudo: " + c.getTopico() + " Disciplina: " + c.getDisciplina().getNome());
+		}
+		
+		
 		
 		em.close();
 		factory.close();

@@ -25,17 +25,109 @@
 					</p:column>
 				</p:row>
 			</f:facet>
-
 		</p:panelGrid>
-
 		
+
+
+
+		 
+		
+		
+		<h:form id="formTableDisciplinas">
+		
+		    <p:growl id="growl" showDetail="true" />
+		
+			<p:dataTable value="#{testeManagedBean.disciplinas}" var="disc"
+				id="tableDisciplinas"
+				selectionMode="single" selection="#{testeManagedBean.disciplina}"  rowKey="#{disc.id}"
+				>
+	
+				<f:facet name="header">
+					<h:outputLabel value="DISCIPLINAS" />
+				</f:facet>
+	
+			   <p:ajax event="rowSelect"   update=":formTableConteudo1" />
+	           <p:ajax event="rowUnselect" update=":formTableConteudo1" />
+	
+				<p:column headerText="ID">
+					<h:outputText value="#{disc.id}" />
+				</p:column>
+				
+				<p:column headerText="ID">
+					<h:outputText value="#{disc.nome}" />
+				</p:column>
+					
+			</p:dataTable>
+		</h:form>
+
+
+	    <h:form id="formTableConteudo1">
+		   
+		    <p:growl id="growl" showDetail="true" />
+		    
+			<p:dataTable value="#{testeManagedBean.disciplinasConteudos}" var="cont"
+				id="tableConteudoNovo"
+				selectionMode="single" selection="#{testeManagedBean.conteudo}"  rowKey="#{cont.id}"
+				>
+				
+				<f:facet name="header">
+					<h:outputLabel value="CONTEUDOS" />
+				</f:facet>
+				
+				<p:ajax event="rowSelect"   update=":formTableQuestoes" />
+	            <p:ajax event="rowUnselect" update=":formTableQuestoes" />
+	
+				<p:column headerText="ID">
+					<h:outputText value="#{cont.id}" />
+				</p:column>
+	
+				<p:column headerText="ENUNCIADO">
+							<p:outputLabel value="#{cont.topico}" />
+				</p:column>
+	
+				<p:column headerText="DISCIPLINA">
+					<h:outputText value="#{cont.disciplina.nome}" />
+				</p:column>
+	
+			</p:dataTable>
+		</h:form>
+
+		<br/>
+		
+		
+	    <h:form id="formTableQuestoes">
+		    
+		    <p:growl id="growl" showDetail="true" />
+		    
+			<p:dataTable value="#{testeManagedBean.questoesConteudos}" var="quest"	id="tableQuestoes">
+				
+				<f:facet name="header">
+					<h:outputLabel value="QUESTOES" />
+				</f:facet>
+				
+				<p:column headerText="ID">
+					<h:outputText value="#{quest.id}" />
+				</p:column>
+	
+				<p:column headerText="ENUNCIADO">
+							<p:outputLabel value="#{quest.enunciado}" />
+				</p:column>
+	
+				<p:column headerText="DISCIPLINA">
+					<h:outputText value="#{quest.conteudo.disciplina.nome}" />
+				</p:column>
+	
+			</p:dataTable>
+		</h:form>
+		
+
 
 		<!-- Mensagem ajax de cadastro -->
 		<p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
 			<f:facet name="default">
 				<h:outputText value="#{msg['pages.cadastroDisciplina.ajaxDefault']}" />
 			</f:facet>
-
+			
 			<f:facet name="progress">
 				<h:outputText
 					value="#{msg['pages.cadastroDisciplina.ajaxProgress']}" />
@@ -54,36 +146,16 @@
 		<br />
 
 
-		<!-- Form de exibição do cadastro de disciplina realizado -->
-		<h:form id="formDiscCad">
-			<p:dataTable 
-				value="#{testeManagedBean.questoes}"
-				id="tabelaDisc"
-				var="disc" 
-				rowKey="#{disc.id}">
-				
-				<f:facet name="header">
-					<h:outputLabel value="#{msg['pages.cadastroDisciplina.colunaFacet']}" />
-				</f:facet>
-				
-				<p:column headerText="#{msg['pages.cadastroDisciplina.colID']}" style="width:10%">
-					<h:outputText value="#{disc.id}" />
-				</p:column>
-				
-				<p:column headerText="#{msg['pages.cadastroDisciplina.colDisciplina']}" style="width:10%">
-					<h:outputText value="#{disc.enunciado}" />
-				</p:column>
-				
-				<p:column headerText="#{msg['pages.cadastroDisciplina.colDisciplina']}" style="width:10%">
-					<h:outputText value="#{disc.disciplina.nome}" />
-				</p:column>
-				
-				<p:column headerText="#{msg['pages.cadastroDisciplina.colDisciplina']}" style="width:10%">
-					<h:outputText value="#{disc.disciplina.conteudo}" />
-				</p:column>
-				
-			</p:dataTable>
-		</h:form>
+
+		
+	
+
+
+		
+
+
+
+
 	</ui:define>
 
 </ui:composition>
