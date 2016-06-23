@@ -29,6 +29,7 @@ public class Prova {
 	private String curso;
 	private String faculdade;
 	private String turma;
+	private String nome;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dataAplicacao;
@@ -95,6 +96,14 @@ public class Prova {
 		this.turma = turma;
 	}
 	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 	public Calendar getDataAplicacao() {
 		return dataAplicacao;
 	}
@@ -153,6 +162,7 @@ public class Prova {
 		result = prime * result + ((disciplina == null) ? 0 : disciplina.hashCode());
 		result = prime * result + ((faculdade == null) ? 0 : faculdade.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((prova == null) ? 0 : prova.hashCode());
 		result = prime * result + quantidadeQuestoes;
 		result = prime * result + ((questoes == null) ? 0 : questoes.hashCode());
@@ -210,6 +220,13 @@ public class Prova {
 		if (id != other.id) {
 			return false;
 		}
+		if (nome == null) {
+			if (other.nome != null) {
+				return false;
+			}
+		} else if (!nome.equals(other.nome)) {
+			return false;
+		}
 		if (prova == null) {
 			if (other.prova != null) {
 				return false;
@@ -239,9 +256,10 @@ public class Prova {
 
 	@Override
 	public String toString() {
-		return "Prova [id=" + id + ", curso=" + curso + ", faculdade=" + faculdade + ", turma=" + turma
-				+ ", dataAplicacao=" + dataAplicacao + ", quantidadeQuestoes=" + quantidadeQuestoes + ", questoes="
-				+ questoes + ", conteudos=" + conteudos + ", disciplinas=" + disciplina + ", prova=" + prova + "]";
+		return "Prova [id=" + id + ", curso=" + curso + ", faculdade=" + faculdade + ", turma=" + turma + ", nome="
+				+ nome + ", dataAplicacao=" + dataAplicacao + ", quantidadeQuestoes=" + quantidadeQuestoes
+				+ ", questoes=" + questoes + ", conteudos=" + conteudos + ", disciplina=" + disciplina + ", prova="
+				+ prova + "]";
 	}
 	
 }

@@ -8,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 
+import br.facens.gerenciadordeprovas.bean.Conteudo;
 import br.facens.gerenciadordeprovas.bean.Disciplina;
 import br.facens.gerenciadordeprovas.bean.Questao;
 
@@ -70,6 +71,20 @@ public abstract class DAOImpl<T, I extends Serializable, C,D extends Questao> {
 	
 	@SuppressWarnings("unchecked")
 	public <K> List<T> getAll(Class<T> classe, K objeto) {
+		
+		return getEntityManager().createQuery("select c from " + classe.getSimpleName() + " c where c.disciplina.id = " + ((Disciplina) objeto).getId()).getResultList();
+		//"Select l From " + Conteudo.class.getSimpleName() + " l Where l.disciplina.id = 4")
+	}
+	
+	@SuppressWarnings("unchecked")
+	public <K> List<T> getAllQuestoesConteudos(Class<T> classe, K objeto) {
+		
+		return getEntityManager().createQuery("select c from " + classe.getSimpleName() + " c where c.conteudo.id = " + ((Conteudo) objeto).getId()).getResultList();
+		//"Select l From " + Conteudo.class.getSimpleName() + " l Where l.disciplina.id = 4")
+	}
+	
+	@SuppressWarnings("unchecked")
+	public <O,K> List<O> getAllQuestoesDisciplinas(Class<O> classe, K objeto) {
 		
 		return getEntityManager().createQuery("select c from " + classe.getSimpleName() + " c where c.disciplina.id = " + ((Disciplina) objeto).getId()).getResultList();
 		//"Select l From " + Conteudo.class.getSimpleName() + " l Where l.disciplina.id = 4")

@@ -5,6 +5,8 @@ package br.facens.gerenciadordeprovas.service;
 
 import java.util.List;
 
+import br.facens.gerenciadordeprovas.bean.Conteudo;
+import br.facens.gerenciadordeprovas.bean.Disciplina;
 import br.facens.gerenciadordeprovas.bean.Questao;
 import br.facens.gerenciadordeprovas.bean.QuestaoAlternativa;
 import br.facens.gerenciadordeprovas.bean.QuestaoVerdadeiroFalso;
@@ -42,6 +44,18 @@ public class QuestaoService {
 		return list;
 	}
 	
+	public List<Questao> getQuestoes(Conteudo conteudo) {
+		List<Questao> list = questaoDAO.getAllQuestoesConteudos(Questao.class, conteudo);
+		questaoDAO.closeEntityManager();
+		return list;
+	}
+	
+	public List<Conteudo> getQuestoesConteudos(Disciplina disciplina) {
+		List<Conteudo> list = questaoDAO.getAllQuestoesDisciplinas(Conteudo.class, disciplina);
+		questaoDAO.closeEntityManager();
+		return list;
+	}
+	
 	public List<QuestaoAlternativa> getQuestoesAlternativas() {
 		List<QuestaoAlternativa> list = questaoDAO.getAllAlternativa(QuestaoAlternativa.class);
 		questaoDAO.closeEntityManager();
@@ -64,5 +78,5 @@ public class QuestaoService {
 		questaoDAO.remove(questao);
 		questaoDAO.closeEntityManager();
 	}
-
+	
 }
