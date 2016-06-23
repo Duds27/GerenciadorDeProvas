@@ -13,12 +13,21 @@
             <p:menuitem value="Apagar" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
             <p:menuitem value="Listar" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
         </p:submenu>
-        <p:submenu label="#{msg['pages.base.menu.cadastros']}">
+        <p:submenu label="#{msg['pages.base.menu.cadastroDisciplina']}">
             <p:menuitem value="#{msg['pages.base.menu.cadastroDisciplina']}" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" url="cadastroDisciplinas.xhtml" />
+        </p:submenu>
+        <p:submenu label="#{msg['pages.base.menu.cadastroConteudo']}">
             <p:menuitem value="#{msg['pages.base.menu.cadastroConteudo']}" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" url="cadastroConteudo.xhtml" />
-            <p:menuitem value="#{msg['pages.base.menu.cadastroQuestao']}" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" url="cadastroQuestao.xhtml" />
+        </p:submenu>
+        <p:submenu label="#{msg['pages.base.menu.cadastroQuestao']}">
+            <p:menuitem value="#{msg['pages.base.menu.cadastroQuestaoAlternativa']}" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" url="cadastroQuestaoAlternativa.xhtml" />
+            <p:menuitem value="#{msg['pages.base.menu.cadastroQuestaoDissertativa']}" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" url="cadastroQuestaoDissertativa.xhtml" />
+            <p:menuitem value="#{msg['pages.base.menu.cadastroQuestaoTrueOrFalse']}" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" url="cadastroQuestaoTrueOrFalse.xhtml" />
+        </p:submenu>
+        <p:submenu label="#{msg['pages.base.menu.cadastroProva']}">
             <p:menuitem value="#{msg['pages.base.menu.cadastroProva']}" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" url="cadastroProva.xhtml" />
-            <p:menuitem value="#{msg['pages.base.menu.criaPDF']}" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" url="criaPDF.xhtml" />
+			<p:menuitem value="#{msg['pages.base.menu.criaPDF']}" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" url="criaPDF.xhtml" />
+            <p:menuitem value="Questão" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" url="questao.xhtml" />
         </p:submenu>
         <p:submenu label="Conteudo">
             <p:menuitem value="Cadastrar" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" />

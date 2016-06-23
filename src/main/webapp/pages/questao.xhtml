@@ -1,0 +1,89 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
+
+
+	<ui:define name="title">
+		<h:outputText value="#{msg['pages.inicio.title']}" />
+	</ui:define>
+
+	<ui:define name="principal">
+		<p:panelGrid>
+			<f:facet name="header">
+				<p:row>
+					<p:column>
+						<p:graphicImage library="sistema"
+							name="images/icon_livro_100x100.png" />
+					</p:column>
+					<p:column>
+						<p:outputLabel value="#{msg['pages.cadastroDisciplina.titulo']}" />
+					</p:column>
+				</p:row>
+			</f:facet>
+
+		</p:panelGrid>
+
+		
+
+		<!-- Mensagem ajax de cadastro -->
+		<p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
+			<f:facet name="default">
+				<h:outputText value="#{msg['pages.cadastroDisciplina.ajaxDefault']}" />
+			</f:facet>
+
+			<f:facet name="progress">
+				<h:outputText
+					value="#{msg['pages.cadastroDisciplina.ajaxProgress']}" />
+			</f:facet>
+
+			<f:facet name="start">
+				<p:graphicImage library="sistema" name="images/facebook.gif" />
+			</f:facet>
+
+			<f:facet name="complete">
+				<h:outputText
+					value="#{msg['pages.cadastroDisciplina.ajaxComplete']}" />
+			</f:facet>
+		</p:ajaxStatus>
+
+		<br />
+
+
+		<!-- Form de exibição do cadastro de disciplina realizado -->
+		<h:form id="formDiscCad">
+			<p:dataTable 
+				value="#{testeManagedBean.questoes}"
+				id="tabelaDisc"
+				var="disc" 
+				rowKey="#{disc.id}">
+				
+				<f:facet name="header">
+					<h:outputLabel value="#{msg['pages.cadastroDisciplina.colunaFacet']}" />
+				</f:facet>
+				
+				<p:column headerText="#{msg['pages.cadastroDisciplina.colID']}" style="width:10%">
+					<h:outputText value="#{disc.id}" />
+				</p:column>
+				
+				<p:column headerText="#{msg['pages.cadastroDisciplina.colDisciplina']}" style="width:10%">
+					<h:outputText value="#{disc.enunciado}" />
+				</p:column>
+				
+				<p:column headerText="#{msg['pages.cadastroDisciplina.colDisciplina']}" style="width:10%">
+					<h:outputText value="#{disc.disciplina.nome}" />
+				</p:column>
+				
+				<p:column headerText="#{msg['pages.cadastroDisciplina.colDisciplina']}" style="width:10%">
+					<h:outputText value="#{disc.disciplina.conteudo}" />
+				</p:column>
+				
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

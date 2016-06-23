@@ -41,7 +41,7 @@ import br.facens.gerenciadordeprovas.service.ProvaService;
 
 @ManagedBean(name = "provaManagedBean")
 @ViewScoped
-public class provaManagedBean {
+public class ProvaManagedBean {
 	private Prova prova;
 	private List<Prova> provas;
 	private ProvaService provaService = new ProvaService();
@@ -137,7 +137,7 @@ public class provaManagedBean {
 	public void GeradorGabaritoPDF()
 	{
 		Document pdf = new Document(PageSize.A4);
-		//Font f = new Font(FontFamily.COURIER, 20, Font.BOLD);
+		Font f = new Font(20, Font.BOLD);
 		Paragraph titulo = new Paragraph("Gabarito", f);
 		
 		titulo.setAlignment(Element.ALIGN_CENTER);
@@ -161,8 +161,8 @@ public class provaManagedBean {
         		  QuestaoAlternativa alt = (QuestaoAlternativa)prova.getQuestoes().get(i);
         		  pdf.add(new Paragraph(""+(i + 1)+") " +  
      	                 prova.getQuestoes().get(i).getEnunciado()));
-        		  pdf.add(new Paragraph("  R: " +  
-        				  alt.getRespostaalt())); 
+        		 // pdf.add(new Paragraph("  R: " +  
+        				  //alt.getRespostaalt())); 
         		  pdf.add(Chunk.NEWLINE);
         	  }
         	  
@@ -171,8 +171,8 @@ public class provaManagedBean {
         		  QuestaoDissertativa dis = (QuestaoDissertativa)prova.getQuestoes().get(i);
         		  pdf.add(new Paragraph(""+(i + 1)+") " +  
       	                 prova.getQuestoes().get(i).getEnunciado()));
-        		  pdf.add(new Paragraph("  R: " +  
-        				  dis.getRespostadis())); 
+        		  //pdf.add(new Paragraph("  R: " +  
+        			//	  dis.getRespostadis())); 
         		  pdf.add(Chunk.NEWLINE);
         	  }
         	  
@@ -181,8 +181,8 @@ public class provaManagedBean {
         		  QuestaoVerdadeiroFalso verd = (QuestaoVerdadeiroFalso)prova.getQuestoes().get(i);
         		 pdf.add(new Paragraph(""+(i + 1)+") " +  
      	                 prova.getQuestoes().get(i).getEnunciado()));
-        	     pdf.add(new Paragraph("  R: " +  
-        	    		 verd.getRespostavf())); 
+        	     //pdf.add(new Paragraph("  R: " +  
+        	    	//	 verd.getRespostavf())); 
         	     pdf.add(Chunk.NEWLINE);
         	  }
           }

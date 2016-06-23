@@ -27,7 +27,7 @@ import br.facens.gerenciadordeprovas.service.QuestaoService;
  * @author Eduardo
  *
  */
-@ManagedBean
+@ManagedBean(eager=true)
 @ViewScoped
 public class QuestaoVerdadeiroFalsoManagedBean {
 
@@ -81,7 +81,7 @@ public class QuestaoVerdadeiroFalsoManagedBean {
 	
 	public void save() {
 		questao.setConteudo(conteudo);
-		questao.setDisciplina(disciplina);
+		//questao.setDisciplina(disciplina);
 		alternativa.setVerdade(alternativa.getVerdade());
 		questao = serviceQuestao.salvar(questao);
 		
@@ -163,5 +163,5 @@ public class QuestaoVerdadeiroFalsoManagedBean {
 	 	else
 	 		conteudos = new ArrayList<Conteudo>();
 	 }
-	
+
 }

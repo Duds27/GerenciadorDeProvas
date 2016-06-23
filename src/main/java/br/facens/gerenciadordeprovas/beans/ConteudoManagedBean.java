@@ -19,7 +19,7 @@ import br.facens.gerenciadordeprovas.service.DisciplinaService;
  * @author Eduardo
  *
  */
-@ManagedBean
+@ManagedBean(eager=true)
 @ViewScoped
 public class ConteudoManagedBean {
 

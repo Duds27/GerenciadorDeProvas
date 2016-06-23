@@ -7,6 +7,7 @@ package br.facens.gerenciadordeprovas.bean;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.context.ExternalContext;
@@ -50,10 +51,10 @@ public class Conteudo implements Serializable {
 	private long id;
 	private String topico;
 	
-	@OneToMany(mappedBy="conteudo", cascade=CascadeType.ALL)
-	private List<Questao> questoes;
+	@OneToMany(mappedBy="conteudo")
+	private List<Questao> questoes = new ArrayList<Questao>();
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Disciplina disciplina;
 	
 	/*@ManyToMany(

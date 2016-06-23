@@ -23,7 +23,7 @@ import br.facens.gerenciadordeprovas.service.QuestaoService;
  * @author Eduardo
  *
  */
-@ManagedBean
+@ManagedBean(eager=true)
 @ViewScoped
 public class QuestaoDissertativaManagedBean {
 
@@ -66,7 +66,7 @@ public class QuestaoDissertativaManagedBean {
 
 	public void save() {
 		questao.setConteudo(conteudo);
-		questao.setDisciplina(disciplina);
+		//questao.setDisciplina(disciplina);
 		questao = serviceQuestao.salvar(questao);
 		
 		if (questoes != null)

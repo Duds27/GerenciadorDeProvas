@@ -51,10 +51,10 @@ public class Disciplina implements Serializable {
 	private long id;
 	private String nome;
 	
-	@OneToMany(mappedBy="disciplina", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="disciplina")
 	private List<Conteudo> conteudo = new ArrayList<Conteudo>();
 	
-	@OneToMany(mappedBy="disciplina", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="disciplina")
 	private List<Questao> questoes = new ArrayList<Questao>();
 	
 	/*@ManyToOne(cascade = CascadeType.ALL)
@@ -113,7 +113,7 @@ public class Disciplina implements Serializable {
 
 	public void addQuestao(Questao questao) {
 		this.questoes.add(questao);
-	}
+	}	  
 
 	/*public Prova getProva() {
 		return prova;
@@ -140,7 +140,7 @@ public class Disciplina implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		//result = prime * result + ((conteudo == null) ? 0 : conteudo.hashCode());
+		result = prime * result + ((conteudo == null) ? 0 : conteudo.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 	//	result = prime * result + ((professor == null) ? 0 : professor.hashCode());

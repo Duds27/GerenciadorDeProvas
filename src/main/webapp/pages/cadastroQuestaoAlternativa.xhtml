@@ -1,0 +1,200 @@
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
+
+	<ui:define name="title">
+		<h:outputText value="#{msg['pages.inicio.title']}" />
+	</ui:define>
+
+	<ui:define name="principal">
+		<p:panelGrid>
+			<f:facet name="header">
+				<p:row>
+					<p:column>
+						<p:graphicImage library="sistema"
+							name="images/icon_questao_100x100.png" />
+					</p:column>
+					<p:column>
+						<p:outputLabel value="#{msg['pages.cadastroQuestao.titulo']}" />
+					</p:column>
+				</p:row>
+			</f:facet>
+		</p:panelGrid>
+			
+			<h:form id="formQuestao">
+				<p:panelGrid>
+						<f:facet name="header">
+							<p:row>
+								<p:column/>
+								<p:column>
+									<p:outputLabel value="#{msg['pages.cadastroQuestao.titulo']}" />
+								</p:column>
+							</p:row>
+						</f:facet>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msg['pages.cadastroQuestao.nomeDisciplina']}" />
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="subject1" value="#{questaoAlternativaManagedBean.disciplina}" converter="disciplinaConverter" effect="fade">
+									<p:ajax listener="#{questaoAlternativaManagedBean.onSubjectChange}" update="content1" />
+									<f:selectItem itemLabel="#{msg['pages.cadastroQuestao.labelSubject']}" noSelectionOption="true" />
+									<f:selectItems value="#{questaoAlternativaManagedBean.disciplinas}" var="disc" itemLabel="#{disc.nome}" itemValue="#{disc}" />							
+								</p:selectOneMenu>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msg['pages.cadastroQuestao.nomeConteudo']}" />
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="content1" value="#{questaoAlternativaManagedBean.conteudo}" converter="conteudoConverter" effect="fade">
+									<p:ajax event="itemSelect" update=":formQuestao" />
+									<f:selectItem itemLabel="#{msg['pages.cadastroQuestao.labelContent']}" noSelectionOption="true" />
+									<f:selectItems value="#{questaoAlternativaManagedBean.conteudos}" var="cont" itemLabel="#{cont.topico}" itemValue="#{cont}" />							
+								</p:selectOneMenu>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel
+									value="#{msg['pages.cadastroQuestao.dificuldadeQuestao']}" />
+							</p:column>
+							<p:column>
+								<p:inputText value="#{questaoAlternativaManagedBean.questao.dificuldade}" label="#{msg['pages.cadastroQuestao.labelDificuldade']}">
+							       	<f:validateDoubleRange minimum="1" maximum="10" />
+								</p:inputText>
+							</p:column>
+						</p:row>
+							
+						<p:row>
+							<p:column>
+								<h:outputLabel
+									value="#{msg['pages.cadastroQuestao.enunciadoQuestao']}" />
+							</p:column>
+							<p:column>
+								<p:inputTextarea rows="10" cols="150" value="#{questaoAlternativaManagedBean.questao.enunciado}" />
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel
+									value="#{msg['pages.cadastroQuestao.alternativa1']}" />
+							</p:column>
+							<p:column>
+								<p:inputText value="#{questaoAlternativaManagedBean.alternativa.alternativa1}" />
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel
+									value="#{msg['pages.cadastroQuestao.alternativa2']}" />
+							</p:column>
+							<p:column>
+								<p:inputText value="#{questaoAlternativaManagedBean.alternativa.alternativa2}" />
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel
+									value="#{msg['pages.cadastroQuestao.alternativa3']}" />
+							</p:column>
+							<p:column>
+								<p:inputText value="#{questaoAlternativaManagedBean.alternativa.alternativa3}" />
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel
+									value="#{msg['pages.cadastroQuestao.alternativa4']}" />
+							</p:column>
+							<p:column>
+								<p:inputText value="#{questaoAlternativaManagedBean.alternativa.alternativa4}" />
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel
+									value="#{msg['pages.cadastroQuestao.alternativa5']}" />
+							</p:column>
+							<p:column>
+								<p:inputText value="#{questaoAlternativaManagedBean.alternativa.alternativa5}" />
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel
+									value="#{msg['pages.cadastroQuestao.respostaQuestao']}" />
+							</p:column>
+							<p:column>
+								<p:inputTextarea rows="10" cols="150" value="#{questaoAlternativaManagedBean.questao.resposta}" />
+							</p:column>
+						</p:row>
+							
+						<p:row>
+							<p:column>
+								<h:outputLabel
+									value="#{msg['pages.cadastroQuestao.tempoQuestao']}" />
+							</p:column>
+							<p:column>
+								<p:inputText value="#{questaoAlternativaManagedBean.questao.tempo}" label="#{msg['pages.cadastroQuestao.labelTempo']}">
+						        	<f:validateDoubleRange minimum="1" maximum="120" />
+								</p:inputText>
+							</p:column>
+						</p:row>
+		
+						<p:row>
+							<p:column>
+								<p:commandButton value="#{msg['pages.cadastroQuestao.salvar']}"
+									action="#{questaoAlternativaManagedBean.save}"
+									icon="ui-icon-disk" />
+							</p:column>
+						</p:row>
+						
+					</p:panelGrid>
+			</h:form>
+			
+		
+		
+		<!-- Mensagem ajax de cadastro -->
+		<p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
+			<f:facet name="default">
+				<h:outputText value="#{msg['pages.cadastroDisciplina.ajaxDefault']}" />
+			</f:facet>
+
+			<f:facet name="progress">
+				<h:outputText
+					value="#{msg['pages.cadastroDisciplina.ajaxProgress']}" />
+			</f:facet>
+
+			<f:facet name="start">
+				<p:graphicImage library="sistema" name="images/facebook.gif" />
+			</f:facet>
+
+			<f:facet name="complete">
+				<h:outputText
+					value="#{msg['pages.cadastroDisciplina.ajaxComplete']}" />
+			</f:facet>
+		</p:ajaxStatus>
+
+		<br />
+		
+		
+		
+	</ui:define>
+
+</ui:composition>

@@ -25,7 +25,7 @@ import br.facens.gerenciadordeprovas.service.QuestaoService;
  * @author Eduardo
  *
  */
-@ManagedBean
+@ManagedBean(eager=true)
 @ViewScoped
 public class QuestaoAlternativaManagedBean {
 
@@ -82,7 +82,7 @@ public class QuestaoAlternativaManagedBean {
 
 	public void save() {
 		questao.setConteudo(conteudo);
-		questao.setDisciplina(disciplina);
+		//questao.setDisciplina(disciplina);
 		questao.setAlternativa(alternativa);
 		questao = serviceQuestao.salvar(questao);
 		
