@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import javax.faces.event.*;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -31,9 +32,9 @@ import org.apache.poi.ss.usermodel.FontFamily;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
-import br.facens.gerenciadordeprovas.bean.Conteudo;
+
 import br.facens.gerenciadordeprovas.bean.Prova;
-import br.facens.gerenciadordeprovas.bean.Questao;
+
 import br.facens.gerenciadordeprovas.bean.QuestaoAlternativa;
 import br.facens.gerenciadordeprovas.bean.QuestaoVerdadeiroFalso;
 import br.facens.gerenciadordeprovas.bean.QuestaoDissertativa;

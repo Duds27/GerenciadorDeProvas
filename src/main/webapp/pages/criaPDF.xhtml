@@ -18,7 +18,7 @@
     <p:panelGrid columns="2">
 			<p:outputLabel value="#{msg['pages.geraProva.prova.nome']}" />
 			<p:selectOneMenu value="#{ProvaManagedBean.prova}"
-				converter="ProvaConverter">
+				converter="converterProva">
 				<f:selectItem itemValue="" itemLabel="#{msg['pages.geraProva.prova.msg']}" />
 				<f:selectItems value="#{ProvaManagedBean.provas}" var="aux"
 					itemValue="#{aux}" itemLabel="#{aux.nomeprova}" />
