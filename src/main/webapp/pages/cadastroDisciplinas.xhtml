@@ -112,13 +112,13 @@
 			</p:dataTable>
 			
 			<h:commandLink id="excel">
-        	<p:graphicImage name="images/excel.png" />
-       	 	<p:dataExporter type="xls" target="formDiscCad" fileName="Disciplinas" postProcessor="#{disciplinaManagedBean.postProcessXLS}" />
+        	<p:graphicImage library="sistema" name="images/excel.png" />
+       	 	<p:dataExporter type="xls" target="tabelaDisc" fileName="Disciplinas" postProcessor="#{disciplinaManagedBean.postProcessXLS}" />
     		</h:commandLink>
  
 		    <h:commandLink id="pdf">
-		        <p:graphicImage name="images/pdf.png" />
-		        <p:dataExporter type="pdf" target="formDiscCad" fileName="Disciplinas" preProcessor="#{disciplinaManagedBean.preProcessPDF}" />
+		        <p:graphicImage library="sistema" name="images/pdf.png" size= />
+		        <p:dataExporter type="pdf" target="tabelaDisc" fileName="Disciplinas" preProcessor="#{disciplinaManagedBean.preProcessPDF}" />
 		    </h:commandLink>
 		</h:form>
 	</ui:define>
