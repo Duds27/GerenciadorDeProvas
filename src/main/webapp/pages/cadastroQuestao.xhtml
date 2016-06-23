@@ -430,6 +430,16 @@
            			<p:rowEditor />
        			</p:column>
 			</p:dataTable>
+			
+			<h:commandLink id="excel">
+        	<p:graphicImage name="images/excel.png" />
+        	<p:dataExporter type="xls" target="formPergunta" fileName="Questoes" postProcessor="#{conteudoManagedBean.postProcessXLS}" />
+    		</h:commandLink>
+ 
+		    <h:commandLink id="pdf">
+		        <p:graphicImage name="images/pdf.png" />
+		        <p:dataExporter type="pdf" target="formPergunta" fileName="Questoes" preProcessor="#{conteudoManagedBean.preProcessPDF}" />
+		    </h:commandLink>
 		</h:form>
 		
 

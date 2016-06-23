@@ -144,7 +144,7 @@ public class provaManagedBean {
 		
 		try
 		{
-          PdfWriter.getInstance(pdf, new FileOutputStream("C:\\gabarito"+ prova.getCodigo() + ".pdf"));
+          PdfWriter.getInstance(pdf, new FileOutputStream("gabarito"+ ".pdf"));
           pdf.open();
           
           pdf.add(new Paragraph("Faculdade: " + prova.getFaculdade() + "     Curso: " + prova.getCurso()));
