@@ -6,80 +6,75 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui2="http://java.sun.com/jsf/facelets"
 	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
-	
+
 	<ui:define name="title">
 		<h:outputText value="#{msg['pages.geraProva.title']}" />
 	</ui:define>
 
 	<ui:define name="principal">
-	
-	<h1><p:outputLabel value="#{msg['pages.geraProva.menu']}" /> </h1>
-	
-	<h:form id="formProvas1">
-	
-		<p:commandButton value="kkk" action="#{provaManagedBean.geradorPDF}"
-			update=":formProvas1" />
-		
-	</h:form>
-	
- 	<h:form id="formProvas">
-    		
-			<p:selectOneMenu id="haha" value="#{provaManagedBean.prova}">
-				<p:ajax listener="#{provaManagedBean.onChange}" update=":formProvas" />
-				<f:selectItem  var="aux"
-					itemValue="#{aux}" itemLabel="hahaha" />
-				<f:selectItems value="#{provaManagedBean.provas}"  />
-			</p:selectOneMenu>
-	
-		<p:commandButton value="#{msg['pages.comuns.form.btnGerar']}" action="#{provaManagedBean.geradorPDF(aux)}"
-			update=":formProvas" />
-		<p:commandButton value="#{msg['pages.comuns.form.btnGerarGabarito']}" action="#{provaManagedBean.GeradorGabaritoPDF}"
-			update=":formProvas" />
-	</h:form>
-	
-	<h:form id="formTableQuestoes">
-		    
-		    <p:growl id="growl" showDetail="true" />
-		    
-			<p:dataTable value="#{provaManagedBean.provas}" var="quest"	id="tableQuestoes"
-				selectionMode="single" selection="#{provaManagedBean.prova}" rowKey="#{quest.id}"
-			>
-				
-				<f:facet name="header">
-					<h:outputLabel value="QUESTOES" />
-				</f:facet>
-				
 
-				
-				
-				<p:column headerText="ID">
+		<h1>
+			<p:outputLabel value="#{msg['pages.geraProva.menu']}" />
+		</h1>
+
+
+
+		<h:form id="formTableQuestoes">
+			<p:growl id="growl" showDetail="true" />
+			<p:dataTable value="#{provaManagedBean.provas}" var="quest"
+				id="tableQuestoes" selectionMode="single"
+				selection="#{provaManagedBean.prova}" rowKey="#{quest.id}">
+
+				<f:facet name="header">
+					<h:outputLabel value="#{msg['pages.geraProva.prova']}" />
+				</f:facet>
+
+				<p:column headerText="#{msg['pages.geraProva.id']}">
 					<h:outputText value="#{quest.id}" />
 				</p:column>
-	
-				<p:column headerText="ENUNCIADO">
-							<p:outputLabel value="#{quest.nome}" />
+
+				<p:column headerText="#{msg['pages.geraProva.nome']}">
+					<p:outputLabel value="#{quest.nome}" />
 				</p:column>
-	
-				<p:column>
-					<p:commandButton value="kkk" action="#{provaManagedBean.geradorPDF(quest)}"
-			update=":formTableQuestoes" />
-			
+
+				<p:column headerText="#{msg['pages.geraProva.labelProvaPDF']}">
+					<p:commandButton value="#{msg['pages.geraProva.gerarProva']}"
+						action="#{provaManagedBean.geradorPDF(quest)}"
+						update=":formTableQuestoes" />
+
 				</p:column>
-				
-				<p:column>
-					<p:commandButton value="gab" action="#{provaManagedBean.geradorGabaritoPDF(quest)}"
-			update=":formTableQuestoes" />
-			
+
+				<p:column headerText="#{msg['pages.geraProva.labelGabaritoPDF']}">
+					<p:commandButton value="#{msg['pages.geraProva.gerarGabarito']}"
+						action="#{provaManagedBean.geradorGabaritoPDF(quest)}"
+						update=":formTableQuestoes" />
+
 				</p:column>
-	
-				
-	
 			</p:dataTable>
-			
-			
-		
 		</h:form>
-	
+		
+		<!-- Mensagem ajax de cadastro -->
+		<p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
+			<f:facet name="default">
+				<h:outputText value="#{msg['pages.cadastroDisciplina.ajaxDefault']}" />
+			</f:facet>
+
+			<f:facet name="progress">
+				<h:outputText
+					value="#{msg['pages.cadastroDisciplina.ajaxProgress']}" />
+			</f:facet>
+
+			<f:facet name="start">
+				<p:graphicImage library="sistema" name="images/facebook.gif" />
+			</f:facet>
+
+			<f:facet name="complete">
+				<h:outputText
+					value="#{msg['pages.cadastroDisciplina.ajaxComplete']}" />
+			</f:facet>
+		</p:ajaxStatus>
+
+		<br />
 
 	</ui:define>
 </ui:composition>

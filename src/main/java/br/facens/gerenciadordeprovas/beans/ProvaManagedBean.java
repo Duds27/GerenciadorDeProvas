@@ -8,18 +8,21 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import com.lowagie.text.BadElementException;
+import com.lowagie.text.Chapter;
 import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
+import com.lowagie.text.FontFactory;
+import com.lowagie.text.Image;
 //import com.lowagie.text.List;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
+import com.lowagie.text.Section;
+import com.lowagie.text.pdf.CMYKColor;
 import com.lowagie.text.pdf.PdfWriter;
 
-import br.facens.gerenciadordeprovas.bean.Conteudo;
 import br.facens.gerenciadordeprovas.bean.Prova;
 import br.facens.gerenciadordeprovas.bean.QuestaoAlternativa;
 import br.facens.gerenciadordeprovas.bean.QuestaoDissertativa;
@@ -58,52 +61,103 @@ public class ProvaManagedBean {
 	
 	public void geradorPDF(Prova prova)
 	{
-		Document pdf = new Document(PageSize.A4);
-		Paragraph titulo = new Paragraph("Avaliacao");
+		String usuario = "aluno";
+        String senha = "facens";
 		
-		titulo.setAlignment(Element.ALIGN_CENTER);
+		Document pdf = new Document(PageSize.A4);
 		
 		try
 		{
-          PdfWriter.getInstance(pdf, new FileOutputStream("C:\\prova.pdf"));
-          pdf.open();        
+          PdfWriter writer = PdfWriter.getInstance(pdf, new FileOutputStream("C:\\prova.pdf"));
           
-          pdf.add(new Paragraph("Faculdade: " + prova.getFaculdade() + "     Curso: " + prova.getCurso()));
-          pdf.add(new Paragraph("Turma: " + prova.getTurma() + "     Disciplina : " + prova.getDisciplina().getNome()));
+          writer.setEncryption(usuario.getBytes(), senha.getBytes(), PdfWriter.ALLOW_PRINTING, PdfWriter.ENCRYPTION_AES_128);
+          
+          pdf.open();        
+        
+          Paragraph titulo = new Paragraph("AVALIAÇÃO", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20, Font.BOLD, new CMYKColor(100, 60, 40, 37)));
+  		  titulo.setAlignment(Element.ALIGN_CENTER);
+  		  
+          
+          Image image2 = Image.getInstance("C:\\facens-logo-topo.jpg");
+          Paragraph img = new Paragraph();
+          img.add(image2);
+          image2.setAlignment(Image.ALIGN_CENTER);
+          img.setAlignment(Element.ALIGN_CENTER);
+          pdf.add(image2);
+          
           pdf.add(Chunk.NEWLINE);
+          pdf.add(Chunk.NEWLINE);
+          
           pdf.add(titulo);
           
+          Paragraph bolder  = new Paragraph("Faculdade: ", FontFactory.getFont(FontFactory.COURIER, 14, Font.BOLD, new CMYKColor(100, 60, 40, 37)));
+          Paragraph aux 	= new Paragraph(prova.getFaculdade());
+          
+          bolder.add(aux);
+          pdf.add(bolder);
+          
+          bolder = new Paragraph("Curso: ", FontFactory.getFont(FontFactory.COURIER, 14, Font.BOLD, new CMYKColor(100, 60, 40, 37)));
+          aux 	= new Paragraph(prova.getCurso());
+          bolder.add(aux);
+          pdf.add(bolder);
+          
+          bolder = new Paragraph("Disciplina : ", FontFactory.getFont(FontFactory.COURIER, 14, Font.BOLD, new CMYKColor(100, 60, 40, 37)));
+          aux 	= new Paragraph(prova.getDisciplina().getNome());
+          bolder.add(aux);
+          pdf.add(bolder);
+          
+          bolder = new Paragraph("Turma: ", FontFactory.getFont(FontFactory.COURIER, 14, Font.BOLD, new CMYKColor(100, 60, 40, 37)));
+          aux 	= new Paragraph(prova.getTurma());
+          bolder.add(aux);
+          pdf.add(bolder);
+
           pdf.add(Chunk.NEWLINE);
+          pdf.add(Chunk.NEWLINE);
+          
+          
+          
           
           for(int i = 0; i < prova.getQuestoes().size(); i++)
           {
+        	  Paragraph title1 = new Paragraph("Questão " + String.valueOf(i+1),
+							FontFactory.getFont(FontFactory.HELVETICA,
+							18,
+							Font.BOLDITALIC,
+							new CMYKColor(0, 255, 255,17)));
+				Chapter chapter1 = new Chapter(title1, 1);
+				chapter1.setNumberDepth(0);
+				pdf.add(chapter1);
+        	  
+        	  
         	  if(prova.getQuestoes().get(i) instanceof QuestaoAlternativa)
         	  {
         		  QuestaoAlternativa alt = (QuestaoAlternativa)prova.getQuestoes().get(i);
-        		  pdf.add(new Paragraph(""+(i + 1)+") " +  
+        		  pdf.add(new Paragraph("Enunciado: " +  
      	                 prova.getQuestoes().get(i).getEnunciado()));
-        		  pdf.add(new Paragraph("  A - " +  
+        		  pdf.add(new Paragraph("a) " +  
      	                 alt.getAlternativa().getAlternativa1()));
-        		  pdf.add(new Paragraph("  B - " +  
+        		  pdf.add(new Paragraph("b) " +  
         				  alt.getAlternativa().getAlternativa2()));
-        		  pdf.add(new Paragraph("  C - " +  
+        		  pdf.add(new Paragraph("c) " +  
         				  alt.getAlternativa().getAlternativa3()));
-        		  pdf.add(new Paragraph("  D - " +  
+        		  pdf.add(new Paragraph("d) " +  
         				  alt.getAlternativa().getAlternativa4()));
+        		  pdf.add(new Paragraph("e) " +  
+        				  alt.getAlternativa().getAlternativa5()));
         	     pdf.add(Chunk.NEWLINE);
         	  }
         	  else if(prova.getQuestoes().get(i) instanceof QuestaoVerdadeiroFalso)
         	  {
-        		  pdf.add(new Paragraph(""+(i + 1)+") " + "Assinale (V)erdadeiro ou (F)also"));
-        		  pdf.add(new Paragraph("  (  ) " +  
-     	                 prova.getQuestoes().get(i).getEnunciado())); 
-     	        	  pdf.add(Chunk.NEWLINE);
+        		  pdf.add(new Paragraph("Enunciado: " + prova.getQuestoes().get(i).getEnunciado()));
+        		  pdf.add(new Paragraph("(  ) FALSO"));
+        		  pdf.add(new Paragraph("(  ) VERDADEIRO"));
+     	          pdf.add(Chunk.NEWLINE);
         	  }
         	  else
-        	  {
-        		  pdf.add(new Paragraph(""+(i + 1)+") " +  
-        	                 prova.getQuestoes().get(i).getEnunciado())); 
-        	        	  pdf.add(Chunk.NEWLINE);
+        	  {        		  
+        		  pdf.add(new Paragraph("Enunciado: " + prova.getQuestoes().get(i).getEnunciado()));
+        		  pdf.add(new Paragraph("Resposta: "));
+        	      pdf.add(Chunk.NEWLINE);
         	  }
           }
           
@@ -123,58 +177,93 @@ public class ProvaManagedBean {
 	
 	public void geradorGabaritoPDF(Prova prova)
 	{
-/*		Document pdf = new Document(PageSize.A4);
-		Font f = new Font(20, Font.BOLD);
-		Paragraph titulo = new Paragraph("Gabarito", f);
-		
-		titulo.setAlignment(Element.ALIGN_CENTER);*/
+		String usuario = "aluno";
+        String senha = "facens";
 		
 		Document pdf = new Document(PageSize.A4);
-		Paragraph titulo = new Paragraph("Gabarito");
-		
-		titulo.setAlignment(Element.ALIGN_CENTER);
 		
 		try
 		{
-          PdfWriter.getInstance(pdf, new FileOutputStream("C:\\gabarito.pdf"));
-          pdf.open();
+          PdfWriter writer = PdfWriter.getInstance(pdf, new FileOutputStream("C:\\gabarito.pdf"));
           
-          pdf.add(new Paragraph("Faculdade: " + prova.getFaculdade() + "     Curso: " + prova.getCurso()));
-          pdf.add(new Paragraph("Turma: " + prova.getTurma() + "     Disciplina : " + prova.getDisciplina().getNome()));
+          writer.setEncryption(usuario.getBytes(), senha.getBytes(), PdfWriter.ALLOW_PRINTING, PdfWriter.ENCRYPTION_AES_128);
+          
+          pdf.open();        
+        
+          Paragraph titulo = new Paragraph("GABARITO", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20, Font.BOLD, new CMYKColor(100, 60, 40, 37)));
+  		  titulo.setAlignment(Element.ALIGN_CENTER);
+  		  
+          
+          Image image2 = Image.getInstance("C:\\facens-logo-topo.jpg");
+          Paragraph img = new Paragraph();
+          img.add(image2);
+          image2.setAlignment(Image.ALIGN_CENTER);
+          img.setAlignment(Element.ALIGN_CENTER);
+          pdf.add(image2);
+          
           pdf.add(Chunk.NEWLINE);
+          pdf.add(Chunk.NEWLINE);
+          
           pdf.add(titulo);
           
+          Paragraph bolder  = new Paragraph("Faculdade: ", FontFactory.getFont(FontFactory.COURIER, 14, Font.BOLD, new CMYKColor(100, 60, 40, 37)));
+          Paragraph aux 	= new Paragraph(prova.getFaculdade());
+          
+          bolder.add(aux);
+          pdf.add(bolder);
+          
+          bolder = new Paragraph("Curso: ", FontFactory.getFont(FontFactory.COURIER, 14, Font.BOLD, new CMYKColor(100, 60, 40, 37)));
+          aux 	= new Paragraph(prova.getCurso());
+          bolder.add(aux);
+          pdf.add(bolder);
+          
+          bolder = new Paragraph("Disciplina : ", FontFactory.getFont(FontFactory.COURIER, 14, Font.BOLD, new CMYKColor(100, 60, 40, 37)));
+          aux 	= new Paragraph(prova.getDisciplina().getNome());
+          bolder.add(aux);
+          pdf.add(bolder);
+          
+          bolder = new Paragraph("Turma: ", FontFactory.getFont(FontFactory.COURIER, 14, Font.BOLD, new CMYKColor(100, 60, 40, 37)));
+          aux 	= new Paragraph(prova.getTurma());
+          bolder.add(aux);
+          pdf.add(bolder);
+
           pdf.add(Chunk.NEWLINE);
+          pdf.add(Chunk.NEWLINE);
+          
+          Paragraph title1 = new Paragraph("GABARITO - RESPOSTAS",
+					FontFactory.getFont(FontFactory.HELVETICA,
+					18,
+					Font.BOLDITALIC,
+					new CMYKColor(0, 255, 255,17)));
+		Chapter chapter1 = new Chapter(title1, 1);
+		chapter1.setNumberDepth(0);
+		pdf.add(chapter1);
           
           for(int i = 0; i < prova.getQuestoes().size(); i++)
           {
+        	  
+        	  
         	  if(prova.getQuestoes().get(i) instanceof QuestaoAlternativa)
         	  {
-        		  QuestaoAlternativa alt = (QuestaoAlternativa)prova.getQuestoes().get(i);
-        		  pdf.add(new Paragraph(""+(i + 1)+") " +  
+        		 // QuestaoAlternativa alt = (QuestaoAlternativa)prova.getQuestoes().get(i);
+        		  pdf.add(new Paragraph("Questão "+(i + 1) + ": " +   
      	                 prova.getQuestoes().get(i).getResposta()));
-        		 // pdf.add(new Paragraph("  R: " +  
-        				  //alt.getRespostaalt())); 
         		  pdf.add(Chunk.NEWLINE);
         	  }
         	  
         	  if(prova.getQuestoes().get(i) instanceof QuestaoDissertativa)
         	  {
-        		  QuestaoDissertativa dis = (QuestaoDissertativa)prova.getQuestoes().get(i);
-        		  pdf.add(new Paragraph(""+(i + 1)+") " +  
+        		  //QuestaoDissertativa dis = (QuestaoDissertativa)prova.getQuestoes().get(i);
+        		  pdf.add(new Paragraph("Questão "+(i + 1) + ": " +  
       	                 prova.getQuestoes().get(i).getResposta()));
-        		  //pdf.add(new Paragraph("  R: " +  
-        			//	  dis.getRespostadis())); 
         		  pdf.add(Chunk.NEWLINE);
         	  }
         	  
         	  if(prova.getQuestoes().get(i) instanceof QuestaoVerdadeiroFalso)
         	  {
-        		  QuestaoVerdadeiroFalso verd = (QuestaoVerdadeiroFalso)prova.getQuestoes().get(i);
-        		 pdf.add(new Paragraph(""+(i + 1)+") " +  
+        		  //QuestaoVerdadeiroFalso verd = (QuestaoVerdadeiroFalso)prova.getQuestoes().get(i);
+        		 pdf.add(new Paragraph("Questão "+ (i + 1) + ": " + 
      	                 prova.getQuestoes().get(i).getResposta()));
-        	     //pdf.add(new Paragraph("  R: " +  
-        	    	//	 verd.getRespostavf())); 
         	     pdf.add(Chunk.NEWLINE);
         	  }
           }
@@ -201,67 +290,7 @@ public class ProvaManagedBean {
 	
 	
 	public void onRowSelect() {
-		Document pdf = new Document(PageSize.A4);
-		Paragraph titulo = new Paragraph("Avaliacao");
 		
-		titulo.setAlignment(Element.ALIGN_CENTER);
-		
-		try
-		{
-          PdfWriter.getInstance(pdf, new FileOutputStream("C:\\prova.pdf"));
-          pdf.open();        
-          
-          pdf.add(new Paragraph("Faculdade: " + prova.getFaculdade() + "     Curso: " + prova.getCurso()));
-          pdf.add(new Paragraph("Turma: " + prova.getTurma() + "     Disciplina : " + prova.getDisciplina().getNome()));
-          pdf.add(Chunk.NEWLINE);
-          pdf.add(titulo);
-          
-          pdf.add(Chunk.NEWLINE);
-          
-          for(int i = 0; i < prova.getQuestoes().size(); i++)
-          {
-        	  if(prova.getQuestoes().get(i) instanceof QuestaoAlternativa)
-        	  {
-        		  QuestaoAlternativa alt = (QuestaoAlternativa)prova.getQuestoes().get(i);
-        		  pdf.add(new Paragraph(""+(i + 1)+") " +  
-     	                 prova.getQuestoes().get(i).getEnunciado()));
-        		  pdf.add(new Paragraph("  A - " +  
-     	                 alt.getAlternativa().getAlternativa1()));
-        		  pdf.add(new Paragraph("  B - " +  
-        				  alt.getAlternativa().getAlternativa2()));
-        		  pdf.add(new Paragraph("  C - " +  
-        				  alt.getAlternativa().getAlternativa3()));
-        		  pdf.add(new Paragraph("  D - " +  
-        				  alt.getAlternativa().getAlternativa4()));
-        	     pdf.add(Chunk.NEWLINE);
-        	  }
-        	  else if(prova.getQuestoes().get(i) instanceof QuestaoVerdadeiroFalso)
-        	  {
-        		  pdf.add(new Paragraph(""+(i + 1)+") " + "Assinale (V)erdadeiro ou (F)also"));
-        		  pdf.add(new Paragraph("  (  ) " +  
-     	                 prova.getQuestoes().get(i).getEnunciado())); 
-     	        	  pdf.add(Chunk.NEWLINE);
-        	  }
-        	  else
-        	  {
-        		  pdf.add(new Paragraph(""+(i + 1)+") " +  
-        	                 prova.getQuestoes().get(i).getEnunciado())); 
-        	        	  pdf.add(Chunk.NEWLINE);
-        	  }
-          }
-          
-          pdf.add(Chunk.NEWLINE);
-          pdf.add(Chunk.NEWLINE);
-		}
-		catch(DocumentException e)
-		{
-			System.err.println(e.getMessage());
-		}
-		catch(IOException e)
-		{
-			System.err.println(e.getMessage());
-		}
-		pdf.close();
 	}
 	
 }
