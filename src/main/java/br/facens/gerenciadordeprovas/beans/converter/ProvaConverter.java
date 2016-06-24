@@ -9,7 +9,7 @@ import br.facens.gerenciadordeprovas.bean.Disciplina;
 import br.facens.gerenciadordeprovas.bean.Prova;
 import br.facens.gerenciadordeprovas.service.ProvaService;
 
-@FacesConverter("converterProva")
+@FacesConverter("provaConverter")
 public class ProvaConverter implements Converter {
 
 	private ProvaService servico = new ProvaService();

@@ -14,19 +14,26 @@
 	<ui:define name="principal">
 	
 	<h1><p:outputLabel value="#{msg['pages.geraProva.menu']}" /> </h1>
+	
+	<h:form id="formProvas1">
+	
+		<p:commandButton value="kkk" action="#{provaManagedBean.geradorPDF}"
+			update=":formProvas1" />
+		
+	</h:form>
+	
  	<h:form id="formProvas">
-    		<p:outputLabel value="#{msg['pages.geraProva.prova.nome']}" />
-			<p:selectOneMenu value="#{provaManagedBean.prova}"
-				converter="converterProva">
-				<p:ajax event="itemSelect" />
-				<f:selectItem itemValue="" itemLabel="#{msg['pages.geraProva.prova.msg']}" />
-				<f:selectItems value="#{provaManagedBean.provas}" var="aux"
-					itemValue="#{aux}" itemLabel="#{aux.nome}" />
+    		
+			<p:selectOneMenu id="haha" value="#{provaManagedBean.prova}">
+				<p:ajax listener="#{provaManagedBean.onChange}" update=":formProvas" />
+				<f:selectItem  var="aux"
+					itemValue="#{aux}" itemLabel="hahaha" />
+				<f:selectItems value="#{provaManagedBean.provas}"  />
 			</p:selectOneMenu>
 	
-		<p:commandButton value="#{msg['pages.comuns.form.btnGerar']}" action="#{ProvaManagedBean.GeradorPDF}"
+		<p:commandButton value="#{msg['pages.comuns.form.btnGerar']}" action="#{provaManagedBean.geradorPDF()}"
 			update=":formProvas" />
-		<p:commandButton value="#{msg['pages.comuns.form.btnGerarGabarito']}" action="#{ProvaManagedBean.GeradorGabaritoPDF}"
+		<p:commandButton value="#{msg['pages.comuns.form.btnGerarGabarito']}" action="#{provaManagedBean.GeradorGabaritoPDF}"
 			update=":formProvas" />
 	</h:form>
 	
@@ -43,7 +50,7 @@
 				</f:facet>
 				
 
-				<p:ajax event="rowSelect" listener="#{provaManagedBean.onRowSelect}" update=":formTableQuestoes" />
+				
 				
 				<p:column headerText="ID">
 					<h:outputText value="#{quest.id}" />
@@ -53,10 +60,15 @@
 							<p:outputLabel value="#{quest.nome}" />
 				</p:column>
 	
+				<p:column>
+					<p:commandButton value="kkk" action="#{provaManagedBean.geradorPDF}"
+			update=":formTableQuestoes" />
+			
+				</p:column>
+	
 				
 	
 			</p:dataTable>
-			
 			
 			
 		

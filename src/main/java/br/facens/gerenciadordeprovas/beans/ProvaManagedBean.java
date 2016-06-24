@@ -56,7 +56,7 @@ public class ProvaManagedBean {
 	
 
 	
-	public void GeradorPDF()
+	public void geradorPDF()
 	{
 		Document pdf = new Document(PageSize.A4);
 		Paragraph titulo = new Paragraph("Avaliacao");
@@ -186,8 +186,16 @@ public class ProvaManagedBean {
 	}
 	
 	
+	public void onChange() {
+		if (prova != null && !prova.getNome().equals(""))
+			provas = provaService.getProvas();
+		else
+			provas = new ArrayList<Prova>();
+	}
 	
-	public void onRowSelect(Prova prova) {
+	
+	
+	public void onRowSelect() {
 		Document pdf = new Document(PageSize.A4);
 		Paragraph titulo = new Paragraph("Avaliacao");
 		
