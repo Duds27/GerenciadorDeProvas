@@ -31,7 +31,7 @@
 				<f:selectItems value="#{provaManagedBean.provas}"  />
 			</p:selectOneMenu>
 	
-		<p:commandButton value="#{msg['pages.comuns.form.btnGerar']}" action="#{provaManagedBean.geradorPDF()}"
+		<p:commandButton value="#{msg['pages.comuns.form.btnGerar']}" action="#{provaManagedBean.geradorPDF(aux)}"
 			update=":formProvas" />
 		<p:commandButton value="#{msg['pages.comuns.form.btnGerarGabarito']}" action="#{provaManagedBean.GeradorGabaritoPDF}"
 			update=":formProvas" />
@@ -61,7 +61,7 @@
 				</p:column>
 	
 				<p:column>
-					<p:commandButton value="kkk" action="#{provaManagedBean.geradorPDF}"
+					<p:commandButton value="kkk" action="#{provaManagedBean.geradorPDF(quest)}"
 			update=":formTableQuestoes" />
 			
 				</p:column>

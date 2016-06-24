@@ -56,7 +56,7 @@ public class ProvaManagedBean {
 	
 
 	
-	public void geradorPDF()
+	public void geradorPDF(Prova prova)
 	{
 		Document pdf = new Document(PageSize.A4);
 		Paragraph titulo = new Paragraph("Avaliacao");

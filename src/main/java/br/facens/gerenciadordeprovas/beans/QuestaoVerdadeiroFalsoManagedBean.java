@@ -98,7 +98,6 @@ public class QuestaoVerdadeiroFalsoManagedBean {
 	public void save() {
 		questao.setConteudo(conteudo);
 		//questao.setDisciplina(disciplina);
-		alternativa.setVerdade(alternativa.getVerdade());
 		questao = serviceQuestao.salvar(questao);
 		
 		if (questoes != null)

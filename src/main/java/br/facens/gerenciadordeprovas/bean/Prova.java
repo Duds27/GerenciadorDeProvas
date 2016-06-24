@@ -35,7 +35,6 @@ public class Prova {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataAplicacao;
 	
-//	private int quantidadeQuestoes;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(
@@ -45,12 +44,12 @@ public class Prova {
 	)
 	private List<Questao> questoes;
 	
-	/*@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(
 		name = "Prova_Conteudos",
 		joinColumns = { @JoinColumn(name = "provaID") },
 		inverseJoinColumns = { @JoinColumn(name = "conteudoID") }
-	)*/
+	)
 	private List<Conteudo> conteudos;
 	
 	/*@OneToMany(
@@ -112,14 +111,6 @@ public class Prova {
 	public void setDataAplicacao(Date dataAplicacao) {
 		this.dataAplicacao = dataAplicacao;
 	}
-	
-	/*public int getQuantidadeQuestoes() {
-		return quantidadeQuestoes;
-	}
-	
-	public void setQuantidadeQuestoes(int quantidadeQuestoes) {
-		this.quantidadeQuestoes = quantidadeQuestoes;
-	}*/
 
 	public List<Questao> getQuestoes() {
 		return questoes;
@@ -165,7 +156,6 @@ public class Prova {
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		//result = prime * result + ((prova == null) ? 0 : prova.hashCode());
-		//result = prime * result + quantidadeQuestoes;
 		result = prime * result + ((questoes == null) ? 0 : questoes.hashCode());
 		result = prime * result + ((turma == null) ? 0 : turma.hashCode());
 		return result;
@@ -235,9 +225,6 @@ public class Prova {
 		} else if (!prova.equals(other.prova)) {
 			return false;
 		}*/
-		/*if (quantidadeQuestoes != other.quantidadeQuestoes) {
-			return false;
-		}*/
 		if (questoes == null) {
 			if (other.questoes != null) {
 				return false;
@@ -258,9 +245,8 @@ public class Prova {
 	@Override
 	public String toString() {
 		return "Prova [id=" + id + ", curso=" + curso + ", faculdade=" + faculdade + ", turma=" + turma + ", nome="
-				+ nome + ", dataAplicacao=" + dataAplicacao// + ", quantidadeQuestoes=" + quantidadeQuestoes
-				+ ", questoes=" + questoes + ", conteudos=" + conteudos + ", disciplina=" + disciplina;// + ", prova="
-			//	+ prova + "]";
+				+ nome + ", dataAplicacao=" + dataAplicacao	+ ", questoes=" + questoes + ", conteudos=" + conteudos 
+				+ ", disciplina=" + disciplina + "]";
 	}
 	
 }

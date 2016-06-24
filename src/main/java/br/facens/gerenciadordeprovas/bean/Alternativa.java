@@ -28,11 +28,7 @@ public class Alternativa implements Serializable {
 	private String alternativa4;
 	private String alternativa5;
 	
-	private TrueOrFalse verdade;
 
-	//@ManyToOne(cascade=CascadeType.ALL)
-	//private QuestaoAlternativa questaoAlternativa;
-	
 	public long getId() {
 		return id;
 	}
@@ -81,13 +77,7 @@ public class Alternativa implements Serializable {
 		this.alternativa5 = alternativa5;
 	}
 	
-	public TrueOrFalse getVerdade() {
-		return verdade;
-	}
-
-	public void setVerdade(TrueOrFalse verdade) {
-		this.verdade = verdade;
-	}
+	
 
 	@Override
 	public int hashCode() {
@@ -99,7 +89,6 @@ public class Alternativa implements Serializable {
 		result = prime * result + ((alternativa4 == null) ? 0 : alternativa4.hashCode());
 		result = prime * result + ((alternativa5 == null) ? 0 : alternativa5.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((verdade == null) ? 0 : verdade.hashCode());
 		return result;
 	}
 
@@ -153,17 +142,13 @@ public class Alternativa implements Serializable {
 		if (id != other.id) {
 			return false;
 		}
-		if (verdade != other.verdade) {
-			return false;
-		}
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "Alternativa [id=" + id + ", alternativa1=" + alternativa1 + ", alternativa2=" + alternativa2
-				+ ", alternativa3=" + alternativa3 + ", alternativa4=" + alternativa4 + ", alternativa5=" + alternativa5
-				+ ", verdade=" + verdade + "]";
+				+ ", alternativa3=" + alternativa3 + ", alternativa4=" + alternativa4 + ", alternativa5=" + alternativa5 + "]";
 	}
 	
 }

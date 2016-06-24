@@ -14,10 +14,10 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -57,11 +57,11 @@ public class Conteudo implements Serializable {
 	@ManyToOne
 	private Disciplina disciplina;
 	
-	/*@ManyToMany(
+	@ManyToMany(
 		mappedBy = "conteudos",
 		cascade = CascadeType.ALL
-	)*/
-	//private List<Prova> provas;
+	)
+	private List<Prova> provas;
 	
 	
 	public long getId() {
@@ -96,13 +96,13 @@ public class Conteudo implements Serializable {
 		this.questoes = questoes;
 	}
 
-/*	public List<Prova> getProvas() {
+	public List<Prova> getProvas() {
 		return provas;
 	}
 
 	public void setProvas(List<Prova> provas) {
 		this.provas = provas;
-	}*/
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -114,7 +114,7 @@ public class Conteudo implements Serializable {
 		int result = 1;
 		result = prime * result + ((disciplina == null) ? 0 : disciplina.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
-		//result = prime * result + ((provas == null) ? 0 : provas.hashCode());
+		result = prime * result + ((provas == null) ? 0 : provas.hashCode());
 		result = prime * result + ((questoes == null) ? 0 : questoes.hashCode());
 		result = prime * result + ((topico == null) ? 0 : topico.hashCode());
 		return result;
@@ -142,13 +142,13 @@ public class Conteudo implements Serializable {
 		if (id != other.id) {
 			return false;
 		}
-		/*if (provas == null) {
+		if (provas == null) {
 			if (other.provas != null) {
 				return false;
 			}
 		} else if (!provas.equals(other.provas)) {
 			return false;
-		}*/
+		}
 		if (questoes == null) {
 			if (other.questoes != null) {
 				return false;
@@ -168,8 +168,8 @@ public class Conteudo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Conteudo [id=" + id + ", topico=" + topico + ", questoes=" + questoes + ", disciplina=" + disciplina;
-				//+ ", provas=" + provas + "]";
+		return "Conteudo [id=" + id + ", topico=" + topico + ", questoes=" + questoes + ", disciplina=" + disciplina
+				+ ", provas=" + provas + "]";
 	}
 	public void postProcessXLS(Object document) {
         HSSFWorkbook wb = (HSSFWorkbook) document;
