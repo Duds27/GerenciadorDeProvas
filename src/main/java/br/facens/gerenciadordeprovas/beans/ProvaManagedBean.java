@@ -121,17 +121,22 @@ public class ProvaManagedBean {
 		pdf.close();
 	}
 	
-	public void GeradorGabaritoPDF()
+	public void geradorGabaritoPDF(Prova prova)
 	{
-		Document pdf = new Document(PageSize.A4);
+/*		Document pdf = new Document(PageSize.A4);
 		Font f = new Font(20, Font.BOLD);
 		Paragraph titulo = new Paragraph("Gabarito", f);
+		
+		titulo.setAlignment(Element.ALIGN_CENTER);*/
+		
+		Document pdf = new Document(PageSize.A4);
+		Paragraph titulo = new Paragraph("Gabarito");
 		
 		titulo.setAlignment(Element.ALIGN_CENTER);
 		
 		try
 		{
-          PdfWriter.getInstance(pdf, new FileOutputStream("gabarito"+ ".pdf"));
+          PdfWriter.getInstance(pdf, new FileOutputStream("C:\\gabarito.pdf"));
           pdf.open();
           
           pdf.add(new Paragraph("Faculdade: " + prova.getFaculdade() + "     Curso: " + prova.getCurso()));
@@ -147,7 +152,7 @@ public class ProvaManagedBean {
         	  {
         		  QuestaoAlternativa alt = (QuestaoAlternativa)prova.getQuestoes().get(i);
         		  pdf.add(new Paragraph(""+(i + 1)+") " +  
-     	                 prova.getQuestoes().get(i).getEnunciado()));
+     	                 prova.getQuestoes().get(i).getResposta()));
         		 // pdf.add(new Paragraph("  R: " +  
         				  //alt.getRespostaalt())); 
         		  pdf.add(Chunk.NEWLINE);
@@ -157,7 +162,7 @@ public class ProvaManagedBean {
         	  {
         		  QuestaoDissertativa dis = (QuestaoDissertativa)prova.getQuestoes().get(i);
         		  pdf.add(new Paragraph(""+(i + 1)+") " +  
-      	                 prova.getQuestoes().get(i).getEnunciado()));
+      	                 prova.getQuestoes().get(i).getResposta()));
         		  //pdf.add(new Paragraph("  R: " +  
         			//	  dis.getRespostadis())); 
         		  pdf.add(Chunk.NEWLINE);
@@ -167,7 +172,7 @@ public class ProvaManagedBean {
         	  {
         		  QuestaoVerdadeiroFalso verd = (QuestaoVerdadeiroFalso)prova.getQuestoes().get(i);
         		 pdf.add(new Paragraph(""+(i + 1)+") " +  
-     	                 prova.getQuestoes().get(i).getEnunciado()));
+     	                 prova.getQuestoes().get(i).getResposta()));
         	     //pdf.add(new Paragraph("  R: " +  
         	    	//	 verd.getRespostavf())); 
         	     pdf.add(Chunk.NEWLINE);
